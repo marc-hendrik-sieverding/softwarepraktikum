@@ -1,4 +1,6 @@
-import { TextField, Button } from '@react-ui-org/react-ui';
+import { TextField} from '@react-ui-org/react-ui';
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
 
 function Anmeldung() {
@@ -9,7 +11,7 @@ function Anmeldung() {
     </div>
     <TextField placeholder = "Benutzername" onChange={() => {}} required/>
     <TextField placeholder = "Passwort" variant= "filled" required minLength={8} />
-    <Button>Anmeldung</Button>
+    <Button variant="contained" href="/NachAnmeldung">Login</Button>
     </>
 )}
 
