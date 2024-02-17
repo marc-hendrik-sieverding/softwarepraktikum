@@ -1,5 +1,6 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 export default function NachAnmeldung() {
-    return <h2>Angemeldet</h2>;
-}
+    return ( 
+    <Button variant="contained" label = "Zeit erfassen"/>)}
