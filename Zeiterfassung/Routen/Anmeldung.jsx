@@ -1,7 +1,7 @@
 import { TextField} from '@react-ui-org/react-ui';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import App from '../src/App'
+import App from '../src/App.jsx'
 
 
 function Anmeldung() {
