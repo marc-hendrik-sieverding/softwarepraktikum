@@ -26,6 +26,7 @@ export default function NachAnmeldung() {
       <Button variant="contained" onClick={startTimer}> Start </Button>
       <Button variant="contained" onClick={resetTimer}> Reset </Button>
       <Button variant="contained" href="/Erfassen" > Speichern </Button>
+      <Button variant="contained" href="/">Home</Button>
     </div>
   );
 }
