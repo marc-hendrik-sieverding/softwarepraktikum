@@ -5,6 +5,7 @@ import Anmeldung from '../Routen/Anmeldung';
 import Daten from '../Routen/Daten'
 import Erfassen from '../Routen/Erfassen'
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
+import './styles.css';
 
 function App() {
   return (

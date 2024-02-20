@@ -10,8 +10,8 @@ function Anmeldung() {
     <div className="wrapper">
       <h1>Login</h1>
     </div>
-    <TextField placeholder = "Benutzername" onChange={() => {}} required/>
-    <TextField placeholder = "Passwort" variant= "filled" required minLength={8} />
+    <TextField className = "Benutzername" placeholder = "Benutzername" onChange={() => {}} required/>
+    <TextField className = "Passwort" placeholder = "Passwort" variant= "filled" required minLength={8} />
     <Button variant="contained" href="/NachAnmeldung/">Login</Button>
     <Button variant="contained" href="/Daten/">Daten</Button>
     </>
