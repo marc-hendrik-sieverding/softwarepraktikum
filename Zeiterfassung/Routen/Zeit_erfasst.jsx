@@ -3,20 +3,22 @@ import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import TextField from '@mui/material/TextField';
+import { TextField, Button } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-export default function DatePick() {
+export default function DatePick({ seconds }) {
     const [value, setValue] = React.useState(dayjs('2024-02-18'));
-    
     const [art, setArt] = React.useState('');
+  
     const handleChange = (event) => {
      setArt(event.target.value);
     };
     return (
       <>
+    <TextField placeholder="Sekunden" InputProps={{ readOnly: true}} value = { seconds }/>
+    <Button variant="contained" href="/Daten"> Speichern </Button>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
           label="Datum"
@@ -26,8 +28,6 @@ export default function DatePick() {
     <TextField placeholder = "Tätigkeiten" variant= "filled" required minLength={8} />
     <InputLabel>Art</InputLabel>
     <Select
-          labelId=""
-          id=""
           value={art}
           label="Art"
           onChange={handleChange}>
