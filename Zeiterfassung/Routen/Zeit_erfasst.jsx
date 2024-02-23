@@ -8,16 +8,15 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-export default function DatePick({ seconds }) {
+export default function DatePick(seconds) {
     const [value, setValue] = React.useState(dayjs('2024-02-18'));
     const [art, setArt] = React.useState('');
-  
     const handleChange = (event) => {
      setArt(event.target.value);
     };
     return (
       <>
-    <TextField placeholder="Sekunden" InputProps={{ readOnly: true}} value = { seconds }/>
+    <TextField placeholder="Sekunden" InputProps={{ readOnly: true}} value = { seconds.seconds }/>
     <Button variant="contained" href="/Daten"> Speichern </Button>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker

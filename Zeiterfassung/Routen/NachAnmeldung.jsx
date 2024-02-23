@@ -15,7 +15,7 @@ export default function NachAnmeldung() {
     }
   };
   const saveTimer = () => {
-    <DatePick seconds={ seconds }></DatePick>
+    return <DatePick seconds={ seconds }></DatePick>
   }
 
   const resetTimer = () => {
