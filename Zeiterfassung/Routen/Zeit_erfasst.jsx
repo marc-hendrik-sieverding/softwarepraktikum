@@ -17,7 +17,6 @@ export default function DatePick(seconds) {
     return (
       <>
     <TextField placeholder="Sekunden" InputProps={{ readOnly: true}} value = { seconds.seconds }/>
-    <Button variant="contained" href="/Daten"> Speichern </Button>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
           label="Datum"
@@ -27,6 +26,7 @@ export default function DatePick(seconds) {
     <TextField placeholder = "Tätigkeiten" variant= "filled" required minLength={8} />
     <InputLabel>Art</InputLabel>
     <Select
+          class="Art"
           value={art}
           label="Art"
           onChange={handleChange}>
@@ -34,6 +34,7 @@ export default function DatePick(seconds) {
           <MenuItem value={"Arbeit"}>Arbeit</MenuItem>
           <MenuItem value={"Sonstiges"}>Sonstiges</MenuItem>
         </Select>
+      <Button class="Speichern" variant="contained" href="/Daten"> Speichern </Button>
     </>
   );
 }

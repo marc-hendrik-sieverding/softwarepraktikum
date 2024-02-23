@@ -1,0 +1,56 @@
+.logout {
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+    font-size: 20px;
+    color: aliceblue;
+}
+
+.Benutzername {
+    width: 250px;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.Passwort {
+    width: 250px; 
+    font-size: 20px;
+    margin-bottom: 7px
+}
+
+.Login {
+    font-size: 16px;
+    padding: 10px 20px;
+    background: rgb(30, 64, 173);
+}
+
+.Daten {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    color: aliceblue;
+}
+
+.Willkommen {
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.Home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    color: aliceblue;
+}
+
+.Art {
+    position: fixed;
+}
+
+.Speichern {
+    position: fixed;
+    bottom: 350px;
+    left: 900px; 
+}

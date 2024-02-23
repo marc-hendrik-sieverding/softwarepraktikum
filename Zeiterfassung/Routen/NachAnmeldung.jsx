@@ -14,8 +14,9 @@ export default function NachAnmeldung() {
       setIntervalId(id);
     }
   };
+
   const saveTimer = () => {
-    return <DatePick seconds={ seconds }></DatePick>
+    return <DatePick seconds ={ seconds }></DatePick>
   }
 
   const resetTimer = () => {
@@ -29,8 +30,8 @@ export default function NachAnmeldung() {
       <h2>Zeit: {seconds} Sekunden</h2>
       <Button variant="contained" onClick={startTimer}> Start </Button>
       <Button variant="contained" onClick={resetTimer}> Reset </Button>
-      <Button variant="contained" href="/Zeit_erfasst" onClick={saveTimer} > Speichern </Button>
-      <Button variant="contained" href="/">Home</Button>
+      <Button variant="contained" href="/Zeit_erfasst" onClick={saveTimer}> Speichern </Button>
+      <Button class= "Home" variant="contained" href="/">Home</Button>
     </div>
   );
 }
