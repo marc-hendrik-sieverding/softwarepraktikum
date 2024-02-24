@@ -14,9 +14,18 @@ export default function DatePick(seconds) {
     const handleChange = (event) => {
      setArt(event.target.value);
     };
+
+    const Addiere1h = () => {
+      seconds = seconds + 3600;
+    }
+
+    const Subtrahiere1h = () => {
+      seconds = seconds - 3600;
+    }
+
     return (
       <>
-    <TextField placeholder="Sekunden" InputProps={{ readOnly: true}} value = { seconds.seconds }/>
+    <TextField placeholder="Sekunden" InputProps={{ readOnly: true}} value = { seconds }/>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
           label="Datum"
@@ -34,6 +43,8 @@ export default function DatePick(seconds) {
           <MenuItem value={"Arbeit"}>Arbeit</MenuItem>
           <MenuItem value={"Sonstiges"}>Sonstiges</MenuItem>
         </Select>
+      <Button variant="contained" onClick={Addiere1h} > -1h </Button>
+      <Button variant="contained" onClick={Subtrahiere1h} > +1h </Button>
       <Button class="Speichern" variant="contained" href="/Daten"> Speichern </Button>
     </>
   );

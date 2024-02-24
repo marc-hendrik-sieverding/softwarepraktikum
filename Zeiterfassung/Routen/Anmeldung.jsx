@@ -33,7 +33,7 @@ function Anmeldung() {
       {isLoggedIn && <> <p class="Willkommen">Willkommen, {Benutzername}! </p> 
       <Button variant="contained" href="/NachAnmeldung"> Zeit erfassen </Button>
       <Button class="Daten" variant="contained" href="/Daten/"> Daten </Button>
-      <Button class="logout" variant="contained" href="/" onclick = {Ausloggen} >Logout</Button>
+      <Button class="logout" variant="contained" href="/" onClick = {Ausloggen} >Logout</Button>
        </>}
     </>
   );
