@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import Zeit_erfasst from './Zeit_erfasst';
 
-export default function Seconds() {
+export default function Seconds(secondsValue) {
     const [intervalId, setIntervalId] = useState(null);
-    const [seconds, setSeconds] = useState(0);
+    const [seconds, setSeconds] = useState(secondsValue || 0);
 
   const startTimer = () => {
     if (intervalId === null) {
@@ -13,21 +12,25 @@ export default function Seconds() {
       setIntervalId(id);
     }
   };
+  const Addiere1h = () => {
+    setSeconds(prevSeconds => prevSeconds + 3600);
+  }
+  
+  const Subtrahiere1h = () => {
+    setSeconds(prevSeconds => prevSeconds - 3600);
+  }
 
   const resetTimer = () => {
     clearInterval(intervalId);
     setIntervalId(null);
     setSeconds(0);
   };
-  const saveTimer = () => {
-    return <Zeit_erfasst seconds={seconds}></Zeit_erfasst>
-  };
-
 
 return {
     seconds,
     startTimer,
     resetTimer,
-    saveTimer
+    Addiere1h,
+    Subtrahiere1h
   };
 }
