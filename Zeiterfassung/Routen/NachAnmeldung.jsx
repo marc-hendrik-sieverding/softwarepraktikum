@@ -1,29 +1,9 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import DatePick from './Zeit_erfasst';
+import React from 'react';
+import { Button } from '@mui/material';
+import Seconds from './Seconds';
 
 export default function NachAnmeldung() {
-  const [intervalId, setIntervalId] = useState(null);
-  const [seconds, setSeconds] = useState(0);
-
-  const startTimer = () => {
-    if (intervalId === null) {
-      const id = setInterval(() => {
-        setSeconds(prevSeconds => prevSeconds + 1);
-      }, 1000);
-      setIntervalId(id);
-    }
-  };
-
-  const saveTimer = () => {
-    return <DatePick seconds ={ seconds }></DatePick>
-  }
-
-  const resetTimer = () => {
-    clearInterval(intervalId);
-    setIntervalId(null);
-    setSeconds(0);
-  };
+  const { seconds, startTimer, resetTimer, saveTimer } = Seconds();
 
   return (
     <div>
@@ -31,7 +11,6 @@ export default function NachAnmeldung() {
       <Button variant="contained" onClick={startTimer}> Start </Button>
       <Button variant="contained" onClick={resetTimer}> Reset </Button>
       <Button variant="contained" href="/Zeit_erfasst" onClick={saveTimer}> Speichern </Button>
-      <Button class= "Home" variant="contained" href="/">Home</Button>
     </div>
   );
 }

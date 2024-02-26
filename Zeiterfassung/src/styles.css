@@ -3,7 +3,7 @@
     top: 20px; 
     right: 20px; 
     font-size: 20px;
-    color: aliceblue;
+    color: rgb(3, 3, 3);
 }
 
 .Benutzername {
@@ -29,7 +29,7 @@
     top: 20px;
     left: 20px;
     font-size: 20px;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
 }
 
 .Willkommen {
@@ -57,7 +57,7 @@
 
 .Datum {
     font-size: 30px;
-    left: 785px; 
+    left: 40%; 
     position: fixed;
     top:20px
 }
@@ -66,6 +66,6 @@
 .TätigkeitenDaten {
     font-size: 10px;
     position: fixed;
-    bottom: 50px;
-    left: 725px; 
+    bottom: 0%;
+    left: 35%; 
 }
