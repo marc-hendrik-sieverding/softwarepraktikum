@@ -13,9 +13,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Anmeldung />} />
-        <Route path="/NachAnmeldung" element={<NachAnmeldung  />} />
-        <Route path="/Daten" element={<Daten  />} />
-        <Route path="/Zeit_erfasst/:seconds" element={<Zeit_erfasst/>}/ >
+        <Route path="/NachAnmeldung" element={<NachAnmeldung/>} />
+        <Route path="/Daten/:taetigkeiten/:seconds/:art" element={<Daten/>} />
+        <Route path="/Zeit_erfasst/:seconds" element={<Zeit_erfasst/>} />
       </Routes>
     </BrowserRouter>
   );
