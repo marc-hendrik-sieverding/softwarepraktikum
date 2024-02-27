@@ -9,6 +9,7 @@ import { TextField, Button } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { Zeitformat } from './Zeitformat'
 
 export default function Zeit_erfasst() {
   const { seconds } = useParams();
@@ -17,6 +18,11 @@ export default function Zeit_erfasst() {
   const [value, setValue] = React.useState(dayjs('2024-02-18'));
   const [art, setArt] = React.useState('');
   const [taetigkeiten, setTaetigkeiten] = React.useState('');
+  const [displayValue, setDisplayValue] = React.useState('');
+
+  React.useEffect(() => {
+    setDisplayValue(Zeitformat(secondsValue));
+  }, [secondsValue]);
 
   const handleTextFieldChange = (event) => {
     setTaetigkeiten(event.target.value);
@@ -28,7 +34,8 @@ export default function Zeit_erfasst() {
 
   return (
     <>
-  <TextField placeholder="0 Sekunden" value={secondsValue}/>
+
+  <TextField placeholder="0 Sekunden" value={displayValue}/>
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
         label="Datum"
@@ -39,7 +46,7 @@ export default function Zeit_erfasst() {
         onChange={handleTextFieldChange} />
   <InputLabel>Art</InputLabel>
   <Select
-        class="Art"
+        className="Art"
         value={art}
         label="Art"
         onChange={handleChange}>
@@ -49,8 +56,8 @@ export default function Zeit_erfasst() {
       </Select>
     <Button variant="contained" onClick={Addiere1h} > +1h </Button>
     <Button variant="contained" onClick={Subtrahiere1h} > -1h </Button>
-    <Link to={`/Daten/taetigkeiten=${taetigkeiten}&seconds=${seconds}&art=${art}`}>
-        <Button class="Speichern" variant="contained">Speichern</Button>
+    <Link to={`/Daten/taetigkeiten=${taetigkeiten}&seconds=${secondsValue}&art=${art}`}>
+        <Button className="Speichern" variant="contained">Speichern</Button>
       </Link>
   </>
 );

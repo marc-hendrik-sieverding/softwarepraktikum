@@ -10,12 +10,14 @@ import { useParams } from 'react-router-dom';
 import '../src/styles.css';
 
 function Daten() {
-  const { art, taetigkeiten, seconds } = useParams();
-  const [DiagrammDaten, setDiagrammDaten] = useState([]);
+  const { art, taetigkeiten, secondsValue } = useParams();
   const currentDate = new Date().toLocaleDateString();
-  const [TortenDiagrammDaten, setTortenDiagrammDaten] = useState([]);
-
+  const [DiagrammDaten, setDiagrammDaten] = useState([]);
+    
   useEffect(() => {
+    const tabelleDaten = [
+    { Art: art, Zeit: secondsValue, Tätigkeit: taetigkeiten } ];
+  
     const TätigkeitenAnzahl = {};
     tabelleDaten.forEach((eintrag) => {
       TätigkeitenAnzahl[eintrag.Tätigkeit] =
@@ -29,11 +31,12 @@ function Daten() {
         label: label,
       }))
     );
-  },);
+  },[taetigkeiten, secondsValue, art]);
+
 
   return (
     <>
-    <h1 class="Datum">Daten für: {currentDate}</h1>
+    <h1 className="Datum">Daten für: {currentDate}</h1>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-200">
@@ -45,7 +48,7 @@ function Daten() {
         <TableBody>
           <TableRow> 
               <TableCell align="center">{art}</TableCell>
-              <TableCell align="center">{seconds}</TableCell>
+              <TableCell align="center">{secondsValue}</TableCell>
               <TableCell align="center">{taetigkeiten}</TableCell>
           </TableRow>
         </TableBody>
@@ -55,10 +58,10 @@ function Daten() {
       <Tortendiagramm DiagrammDaten={DiagrammDaten} />
     </>
   );
-
+  
   function Tortendiagramm(props) {
     return (
-      <div class="TätigkeitenDaten">
+      <div className="TätigkeitenDaten">
         <h1>Tätigkeiten</h1>
         <PieChart
           series={[{ data: props.DiagrammDaten }]}
@@ -69,6 +72,8 @@ function Daten() {
       </div>
     );
   }
+
+
 }
 
 export default Daten;
