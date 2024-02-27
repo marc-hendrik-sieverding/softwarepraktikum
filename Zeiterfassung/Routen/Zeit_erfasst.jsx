@@ -56,7 +56,7 @@ export default function Zeit_erfasst() {
       </Select>
     <Button variant="contained" onClick={Addiere1h} > +1h </Button>
     <Button variant="contained" onClick={Subtrahiere1h} > -1h </Button>
-    <Link to={`/Daten/taetigkeiten=${taetigkeiten}&seconds=${secondsValue}&art=${art}`}>
+    <Link to={`/Daten/taetigkeiten=${taetigkeiten}&seconds=${secondsValue}&art=${art}&datum=${value}`}>
         <Button className="Speichern" variant="contained">Speichern</Button>
       </Link>
   </>

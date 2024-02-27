@@ -10,13 +10,13 @@ import { useParams } from 'react-router-dom';
 import '../src/styles.css';
 
 function Daten() {
-  const { art, taetigkeiten, secondsValue } = useParams();
+  const { art, taetigkeiten, secondsValue, value } = useParams();
   const currentDate = new Date().toLocaleDateString();
   const [DiagrammDaten, setDiagrammDaten] = useState([]);
     
   useEffect(() => {
     const tabelleDaten = [
-    { Art: art, Zeit: secondsValue, Tätigkeit: taetigkeiten } ];
+    { Datum: value, Art: art, Zeit: secondsValue, Tätigkeit: taetigkeiten } ];
   
     const TätigkeitenAnzahl = {};
     tabelleDaten.forEach((eintrag) => {
@@ -40,6 +40,7 @@ function Daten() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-200">
+            <TableCell align="center">Datum</TableCell>
             <TableCell align="center">Art</TableCell>
             <TableCell align="center">Zeit</TableCell>
             <TableCell align="center">Tätigkeit</TableCell>
@@ -47,6 +48,7 @@ function Daten() {
         </TableHead>
         <TableBody>
           <TableRow> 
+              <TableCell align="center">{value}</TableCell>
               <TableCell align="center">{art}</TableCell>
               <TableCell align="center">{secondsValue}</TableCell>
               <TableCell align="center">{taetigkeiten}</TableCell>
