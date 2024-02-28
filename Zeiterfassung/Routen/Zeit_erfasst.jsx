@@ -40,7 +40,7 @@ export default function Zeit_erfasst() {
     <DatePicker
         label="Datum"
         value={value}
-        onChange={(newValue) => setValue(newValue)}/>
+        onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}/>
   </LocalizationProvider>
   <TextField placeholder="Tätigkeiten" variant="filled" required minLength={8} value={taetigkeiten}
         onChange={handleTextFieldChange} />
@@ -56,7 +56,7 @@ export default function Zeit_erfasst() {
       </Select>
     <Button variant="contained" onClick={Addiere1h} > +1h </Button>
     <Button variant="contained" onClick={Subtrahiere1h} > -1h </Button>
-    <Link to={`/Daten/taetigkeiten=${taetigkeiten}&seconds=${secondsValue}&art=${art}&datum=${value}`}>
+    <Link to={`/Daten/${taetigkeiten}/${secondsValue}/${art}/${value}`}>
         <Button className="Speichern" variant="contained">Speichern</Button>
       </Link>
   </>

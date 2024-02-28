@@ -7,7 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../src/styles.css';
+
 
 function Daten() {
   const { art, taetigkeiten, secondsValue, value } = useParams();
@@ -31,12 +33,11 @@ function Daten() {
         label: label,
       }))
     );
-  },[taetigkeiten, secondsValue, art]);
-
+  },[taetigkeiten, secondsValue, art, value]);
 
   return (
     <>
-    <h1 className="Datum">Daten für: {currentDate}</h1>
+    <h1 className="Datum">Daten für: </h1>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-200">
@@ -47,24 +48,27 @@ function Daten() {
           </TableRow>
         </TableHead>
         <TableBody>
+        {DiagrammDaten.map((data, index) => (
           <TableRow> 
               <TableCell align="center">{value}</TableCell>
               <TableCell align="center">{art}</TableCell>
               <TableCell align="center">{secondsValue}</TableCell>
               <TableCell align="center">{taetigkeiten}</TableCell>
           </TableRow>
+          ))}
         </TableBody>
       </Table>
       <Button variant="contained" href="/"> Home </Button>
-      <Button variant="contained" href="/NachAnmeldung"> Zeit erfassen </Button>
+      <Link to="/NachAnmeldung">
+        <Button variant="contained">Zeit erfassen</Button> </Link>
       <Tortendiagramm DiagrammDaten={DiagrammDaten} />
     </>
   );
   
   function Tortendiagramm(props) {
     return (
-      <div className="TätigkeitenDaten">
-        <h1>Tätigkeiten</h1>
+      <div className="">
+        <h1>Art</h1>
         <PieChart
           series={[{ data: props.DiagrammDaten }]}
           width={400}
