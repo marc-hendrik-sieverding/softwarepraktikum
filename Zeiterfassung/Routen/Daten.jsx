@@ -20,16 +20,16 @@ function Daten() {
     const tabelleDaten = [
     { Datum: value, Art: art, Zeit: secondsValue, Tätigkeit: taetigkeiten } ];
   
-    const TätigkeitenAnzahl = {};
+    const ArtAnzahl = {};
     tabelleDaten.forEach((eintrag) => {
-      TätigkeitenAnzahl[eintrag.Tätigkeit] =
-        (TätigkeitenAnzahl[eintrag.Tätigkeit] || 0) + 1;
+      ArtAnzahl[eintrag.Art] =
+        (ArtAnzahl[eintrag.Art] || 0) + 1;
       });
       
     setDiagrammDaten(
-      Object.keys(TätigkeitenAnzahl).map((label, index) => ({
+      Object.keys(ArtAnzahl).map((label, index) => ({
         id: index,
-        value: TätigkeitenAnzahl[label],
+        value: ArtAnzahl[label],
         label: label,
       }))
     );
@@ -37,7 +37,7 @@ function Daten() {
 
   return (
     <>
-    <h1 className="Datum">Daten für: </h1>
+    <h1 className="Datum">Daten für: {currentDate}</h1>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-200">
@@ -48,14 +48,12 @@ function Daten() {
           </TableRow>
         </TableHead>
         <TableBody>
-        {DiagrammDaten.map((data, index) => (
           <TableRow> 
               <TableCell align="center">{value}</TableCell>
               <TableCell align="center">{art}</TableCell>
               <TableCell align="center">{secondsValue}</TableCell>
               <TableCell align="center">{taetigkeiten}</TableCell>
           </TableRow>
-          ))}
         </TableBody>
       </Table>
       <Button variant="contained" href="/"> Home </Button>
