@@ -12,29 +12,47 @@ import '../src/styles.css';
 
 
 function Daten() {
-  const { art, taetigkeiten, secondsValue, value } = useParams();
+  const { art, taetigkeiten, seconds, value } = useParams();
   const currentDate = new Date().toLocaleDateString();
   const [DiagrammDaten, setDiagrammDaten] = useState([]);
+  const [gespeicherteEingaben, setGespeicherteEingaben] = useState([]);
     
   useEffect(() => {
-    const tabelleDaten = [
-    { Datum: value, Art: art, Zeit: secondsValue, Tätigkeit: taetigkeiten } ];
-  
-    const ArtAnzahl = {};
-    tabelleDaten.forEach((eintrag) => {
-      ArtAnzahl[eintrag.Art] =
-        (ArtAnzahl[eintrag.Art] || 0) + 1;
-      });
-      
-    setDiagrammDaten(
-      Object.keys(ArtAnzahl).map((label, index) => ({
-        id: index,
-        value: ArtAnzahl[label],
-        label: label,
-      }))
-    );
-  },[taetigkeiten, secondsValue, art, value]);
+    const existingData = JSON.parse(localStorage.getItem('user'));
+    const newData = { Datum: value, Art: art, Zeit: seconds, Tätigkeit: taetigkeiten };
 
+    if (existingData) {
+      const updatedData = [...existingData, newData];
+      localStorage.setItem('user', JSON.stringify(updatedData));
+      setGespeicherteEingaben(updatedData);
+    } else {
+      localStorage.setItem('user', JSON.stringify([newData]));
+      setGespeicherteEingaben([newData]);
+    }
+  }, [art, taetigkeiten, seconds, value]);    //lösche den array für eine Überraschung
+
+  useEffect(() => {
+    const ArtAnzahl = { Freizeit: 0, Arbeit: 0, Sonstiges: 0 };
+      gespeicherteEingaben.forEach((eingabe) => {
+        ArtAnzahl[eingabe.Art] += 1;
+      });
+      const diagrammDaten = Object.keys(ArtAnzahl).map((art) => ({
+        id: art,
+        value: ArtAnzahl[art],
+        label: art,
+      }));
+
+      setDiagrammDaten(diagrammDaten);
+    }, [gespeicherteEingaben]);
+
+    console.log(gespeicherteEingaben)
+
+  const handleClearLocalStorage = () => {
+    localStorage.removeItem('user');
+    setGespeicherteEingaben([]);
+  };
+  
+  if (gespeicherteEingaben && gespeicherteEingaben.length > 0) {
   return (
     <>
     <h1 className="Datum">Daten für: {currentDate}</h1>
@@ -48,20 +66,23 @@ function Daten() {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow> 
-              <TableCell align="center">{value}</TableCell>
-              <TableCell align="center">{art}</TableCell>
-              <TableCell align="center">{secondsValue}</TableCell>
-              <TableCell align="center">{taetigkeiten}</TableCell>
+        {gespeicherteEingaben.map((eingabe, index) => (
+          <TableRow key={index}>  
+             <TableCell align="center">{eingabe.Datum}</TableCell>
+             <TableCell align="center">{eingabe.Art}</TableCell>
+             <TableCell align="center">{eingabe.Zeit} Sekunden</TableCell>
+             <TableCell align="center">{eingabe.Tätigkeit}</TableCell>
           </TableRow>
+          ))}
         </TableBody>
       </Table>
+      <Button variant="contained" onClick={handleClearLocalStorage}>LÖSCHE ALLES</Button>
       <Button variant="contained" href="/"> Home </Button>
       <Link to="/NachAnmeldung">
         <Button variant="contained">Zeit erfassen</Button> </Link>
       <Tortendiagramm DiagrammDaten={DiagrammDaten} />
     </>
-  );
+  )};
   
   function Tortendiagramm(props) {
     return (

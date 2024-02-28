@@ -41,6 +41,7 @@ export default function Zeit_erfasst() {
     }
   };
 
+
   return (
     <>
 
@@ -49,7 +50,7 @@ export default function Zeit_erfasst() {
     <DatePicker
         label="Datum"
         value={value}
-        onChange={(newValue) => setValue(newValue.format('DD-MM-YYYY'))}/>
+        onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}/>
   </LocalizationProvider>
   <TextField placeholder="Tätigkeiten" required variant="filled" minLength={8} 
   value={taetigkeiten} onChange={handleTextFieldChange} />
