@@ -13,9 +13,10 @@ import '../src/styles.css';
 
 function Daten() {
   const { art, taetigkeiten, seconds, value } = useParams();
-  const currentDate = new Date().toLocaleDateString();
   const [DiagrammDaten, setDiagrammDaten] = useState([]);
   const [gespeicherteEingaben, setGespeicherteEingaben] = useState([]);
+  const [aktuellesDatum, setAktuellesDatum] = useState(new Date());
+  const [gefilterteDaten, setGefilterteDaten] = useState([]);
     
   useEffect(() => {
     const existingData = JSON.parse(localStorage.getItem('user'));
@@ -45,17 +46,49 @@ function Daten() {
       setDiagrammDaten(diagrammDaten);
     }, [gespeicherteEingaben]);
 
-    console.log(gespeicherteEingaben)
+    useEffect(() => {
+      filternNachDatum();
+    }, [aktuellesDatum, gespeicherteEingaben]);
+
+    const filternNachDatum = () => {
+      const gefiltert = gespeicherteEingaben.filter((eintrag) => {
+        const eintragDatum = new Date(eintrag.Datum);
+        return (
+          eintragDatum.getDate() === aktuellesDatum.getDate() &&
+          eintragDatum.getMonth() === aktuellesDatum.getMonth() &&
+          eintragDatum.getFullYear() === aktuellesDatum.getFullYear()
+        );
+      });
+      setGefilterteDaten(gefiltert);
+    };
+
+    const vorherigerTag = () => {
+      const neuesDatum = new Date(aktuellesDatum);
+      neuesDatum.setDate(neuesDatum.getDate() - 1);
+      setAktuellesDatum(neuesDatum);
+    };
+  
+    const naechsterTag = () => {
+      const neuesDatum = new Date(aktuellesDatum);
+      neuesDatum.setDate(neuesDatum.getDate() + 1);
+      setAktuellesDatum(neuesDatum);
+    };
+
+    const handleDelete = (index) => {
+      const updatedData = [...gefilterteDaten];
+      updatedData.splice(index, 1);
+      setGefilterteDaten(updatedData);
+    };
 
   const handleClearLocalStorage = () => {
     localStorage.removeItem('user');
     setGespeicherteEingaben([]);
   };
-  
-  if (gespeicherteEingaben && gespeicherteEingaben.length > 0) {
   return (
     <>
-    <h1 className="Datum">Daten für: {currentDate}</h1>
+    <h1 className="Datum">Daten für: {aktuellesDatum.toLocaleDateString()}</h1>
+      <Button onClick={vorherigerTag}>Vorheriger Tag</Button>
+      <Button onClick={naechsterTag}>Nächster Tag</Button>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-200">
@@ -66,12 +99,15 @@ function Daten() {
           </TableRow>
         </TableHead>
         <TableBody>
-        {gespeicherteEingaben.map((eingabe, index) => (
+        {gefilterteDaten.map((eintrag, index) => (
           <TableRow key={index}>  
-             <TableCell align="center">{eingabe.Datum}</TableCell>
-             <TableCell align="center">{eingabe.Art}</TableCell>
-             <TableCell align="center">{eingabe.Zeit} Sekunden</TableCell>
-             <TableCell align="center">{eingabe.Tätigkeit}</TableCell>
+             <TableCell align="center">{eintrag.Datum}</TableCell>
+             <TableCell align="center">{eintrag.Art}</TableCell>
+             <TableCell align="center">{eintrag.Zeit} Sekunden</TableCell>
+             <TableCell align="center">{eintrag.Tätigkeit}</TableCell>
+             <TableCell align="center">
+                <Button variant="contained" onClick={() => handleDelete(index)}>Löschen</Button>
+              </TableCell>
           </TableRow>
           ))}
         </TableBody>
@@ -82,7 +118,7 @@ function Daten() {
         <Button variant="contained">Zeit erfassen</Button> </Link>
       <Tortendiagramm DiagrammDaten={DiagrammDaten} />
     </>
-  )};
+    )};
   
   function Tortendiagramm(props) {
     return (
@@ -99,5 +135,4 @@ function Daten() {
   }
 
 
-}
 export default Daten;
