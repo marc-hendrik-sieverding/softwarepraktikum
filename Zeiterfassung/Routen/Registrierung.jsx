@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { TextField } from '@react-ui-org/react-ui';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import Anmeldung from './Anmeldung';
 
 function Registrierung() {
     const [Benutzername, setBenutzername] = useState('');
@@ -9,21 +11,18 @@ function Registrierung() {
     const [registrierteUser, setRegistrierteUser] = useState([]);
     const [error, setError] = useState(false);
 
-    const handleRegistrierung = (Benutzername, Passwort) => {
-        const neuerBenutzer = { Benutzername: Benutzername, Passwort: Passwort };
-        setRegistrierteUser([...registrierteUser, neuerBenutzer]);
-    };
-
     const handleRegister = () => {
         if(Benutzername.trim() === '' || Passwort.trim() === '') {
             setError(true)
         }
-       else { handleRegistrierung(Benutzername, Passwort);
+       else { 
+        const neuerBenutzer = { Benutzername: Benutzername, Passwort: Passwort };
+        
+        console.log(neuerBenutzer)
+        setRegistrierteUser([...registrierteUser, neuerBenutzer]);
         setBenutzername('');
         setPasswort(''); }
     };
-    console.log(error)
-    console.log(Benutzername, Passwort)
 
     return (
         <>

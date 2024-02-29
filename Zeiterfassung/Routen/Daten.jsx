@@ -29,7 +29,7 @@ function Daten() {
       localStorage.setItem('user', JSON.stringify([newData]));
       setGespeicherteEingaben([newData]);
     }
-  }, [art, taetigkeiten, seconds, value]);    //lösche den array für eine Überraschung
+  },[art, taetigkeiten, seconds, value]);    //lösche den array für eine Überraschung
 
   useEffect(() => {
     const ArtAnzahl = { Freizeit: 0, Arbeit: 0, Sonstiges: 0 };
@@ -100,5 +100,4 @@ function Daten() {
 
 
 }
-
 export default Daten;

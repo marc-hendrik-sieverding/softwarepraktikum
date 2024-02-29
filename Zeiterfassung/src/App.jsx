@@ -12,7 +12,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
+      <Routes> 
         <Route path="/" element={<Anmeldung />} />
         <Route path="/NachAnmeldung" element={<NachAnmeldung/>} />
         <Route path="/Daten/:taetigkeiten/:seconds/:art/:value" element={<Daten/>} />
