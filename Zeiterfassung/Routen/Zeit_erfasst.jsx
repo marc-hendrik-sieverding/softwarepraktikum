@@ -22,51 +22,45 @@ export default function Zeit_erfasst() {
   const [displayValue, setDisplayValue] = React.useState('');
 
   React.useEffect(() => {
-    setDisplayValue(Zeitformat(secondsValue));
-  }, [secondsValue]);
+      setDisplayValue(Zeitformat(secondsValue));
+     }, [secondsValue]);
 
-  const handleTextFieldChange = (event) => {
-    setTaetigkeiten(event.target.value);
-  };
+      const handleTextFieldChange = (event) => {
+        setTaetigkeiten(event.target.value);
+     };
 
-  const handleChange = (event) => {
-   setArt(event.target.value);
-  };
+      const handleChange = (event) => {
+        setArt(event.target.value);
+     };
 
-  const handleSave = () => {
-    if (taetigkeiten.trim() === '') {
-      alert('Bitte füllen Sie das Feld "Tätigkeiten" aus.');
-    } else {
-      navigate(`/Daten/${taetigkeiten}/${secondsValue}/${art}/${value}`);
-    }
-  };
-
+      const handleSave = () => {
+        if (taetigkeiten.trim() === '') {
+          alert('Bitte füllen Sie das Feld "Tätigkeiten" aus.');
+        } else {
+          navigate(`/Daten/${taetigkeiten}/${secondsValue}/${art}/${value}`);
+        }
+     };
 
   return (
     <>
-
   <TextField placeholder="0 Sekunden" value={displayValue}/>
-  <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <DatePicker
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker>
         label="Datum"
         value={value}
-        onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}/>
-  </LocalizationProvider>
-  <TextField placeholder="Tätigkeiten" required variant="filled" minLength={8} 
-  value={taetigkeiten} onChange={handleTextFieldChange} />
+        onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}
+      </DatePicker>
+    </LocalizationProvider>
+  <TextField placeholder="Tätigkeiten" required variant="filled" minLength={8} value={taetigkeiten} onChange={handleTextFieldChange} />
   <InputLabel>Art</InputLabel>
-  <Select
-        className="Art"
-        value={art}
-        label="Art"
-        onChange={handleChange}>
+    <Select className="Art" value={art} label="Art" onChange={handleChange}>
         <MenuItem value={"Freizeit"}>Freizeit</MenuItem>
         <MenuItem value={"Arbeit"}>Arbeit</MenuItem>
         <MenuItem value={"Sonstiges"}>Sonstiges</MenuItem>
-      </Select>
-    <Button variant="contained" onClick={Addiere1h} > +1h </Button>
-    <Button variant="contained" onClick={Subtrahiere1h} > -1h </Button>
-    <Button variant="contained" onClick={handleSave}>Speichern</Button>
+    </Select>
+      <Button variant="contained" onClick={Addiere1h} > +1h </Button>
+      <Button variant="contained" onClick={Subtrahiere1h} > -1h </Button>
+      <Button variant="contained" onClick={handleSave}>Speichern</Button>
   </>
 );
 }

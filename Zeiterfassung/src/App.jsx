@@ -19,7 +19,7 @@ function App() {
         <Route path="/Zeit_erfasst/:seconds" element={<Zeit_erfasst/>} />
         <Route path="/Registrierung" element={<Registrierung/>} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> //Referenz: https://reactrouter.com/en/main/router-components/browser-router
   );
 }
 

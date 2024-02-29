@@ -4,12 +4,16 @@ export function Zeitformat(secondsValue) {
       const remainingSeconds = secondsValue % 3600;
       const minuteValue = Math.floor(remainingSeconds / 60);
       const secondValue = remainingSeconds % 60;
-      return `${hourValue} Std, ${minuteValue} min, ${secondValue} Sek`;
-    } else if (secondsValue >= 60) {     
+        return `${hourValue} Std, ${minuteValue} min, ${secondValue} Sek`;
+    } 
+    
+    else if (secondsValue >= 60) {     
       const minuteValue = Math.floor(secondsValue / 60);
       const secondValue = secondsValue % 60;
-      return `${minuteValue} min, ${secondValue} Sek`;
-    } else {
+        return (`${minuteValue} min, ${secondValue} Sek`);
+    } 
+    
+    else {
       return `${secondsValue} Sekunde(n)`;
     }
   }

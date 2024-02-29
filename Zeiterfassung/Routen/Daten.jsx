@@ -26,7 +26,8 @@ function Daten() {
       const updatedData = [...existingData, newData];
       localStorage.setItem('user', JSON.stringify(updatedData));
       setGespeicherteEingaben(updatedData);
-    } else {
+    } 
+    else {
       localStorage.setItem('user', JSON.stringify([newData]));
       setGespeicherteEingaben([newData]);
     }
@@ -34,17 +35,10 @@ function Daten() {
 
   useEffect(() => {
     const ArtAnzahl = { Freizeit: 0, Arbeit: 0, Sonstiges: 0 };
-      gespeicherteEingaben.forEach((eingabe) => {
-        ArtAnzahl[eingabe.Art] += 1;
-      });
-      const diagrammDaten = Object.keys(ArtAnzahl).map((art) => ({
-        id: art,
-        value: ArtAnzahl[art],
-        label: art,
-      }));
-
+      gespeicherteEingaben.forEach((eingabe) => {ArtAnzahl[eingabe.Art] += 1;});
+      const diagrammDaten = Object.keys(ArtAnzahl).map((art) => ({ id: art, value: ArtAnzahl[art], label: art, }));
       setDiagrammDaten(diagrammDaten);
-    }, [gespeicherteEingaben]);
+  }, [gespeicherteEingaben]);
 
     useEffect(() => {
       filternNachDatum();
@@ -84,6 +78,7 @@ function Daten() {
     localStorage.removeItem('user');
     setGespeicherteEingaben([]);
   };
+
   return (
     <>
     <h1 className="Datum">Daten für: {aktuellesDatum.toLocaleDateString()}</h1>
@@ -101,21 +96,22 @@ function Daten() {
         <TableBody>
         {gefilterteDaten.map((eintrag, index) => (
           <TableRow key={index}>  
-             <TableCell align="center">{eintrag.Datum}</TableCell>
-             <TableCell align="center">{eintrag.Art}</TableCell>
-             <TableCell align="center">{eintrag.Zeit} Sekunden</TableCell>
-             <TableCell align="center">{eintrag.Tätigkeit}</TableCell>
-             <TableCell align="center">
-                <Button variant="contained" onClick={() => handleDelete(index)}>Löschen</Button>
-              </TableCell>
+            <TableCell align="center">{eintrag.Datum}</TableCell>
+            <TableCell align="center">{eintrag.Art}</TableCell>
+            <TableCell align="center">{eintrag.Zeit} Sekunden</TableCell>
+            <TableCell align="center">{eintrag.Tätigkeit}</TableCell>
+            <TableCell align="center">
+              <Button variant="contained" onClick={() => handleDelete(index)}>Löschen</Button>
+            </TableCell>
           </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Button variant="contained" onClick={handleClearLocalStorage}>LÖSCHE ALLES</Button>
-      <Button variant="contained" href="/"> Home </Button>
-      <Link to="/NachAnmeldung">
-        <Button variant="contained">Zeit erfassen</Button> </Link>
+        <Button variant="contained" onClick={handleClearLocalStorage}>LÖSCHE ALLES</Button>
+        <Button variant="contained" href="/"> Home </Button>
+        <Link to="/NachAnmeldung">
+          <Button variant="contained">Zeit erfassen</Button> 
+        </Link>
       <Tortendiagramm DiagrammDaten={DiagrammDaten} />
     </>
     )};
@@ -124,13 +120,8 @@ function Daten() {
     return (
       <div className="">
         <h1>Art</h1>
-        <PieChart
-          series={[{ data: props.DiagrammDaten }]}
-          width={400}
-          height={200}
-          
-        />
-      </div>
+        <PieChart series={[{ data: props.DiagrammDaten }]} width={400} height={200}/>
+      </div>    //Referenz: https://mui.com/x/react-charts/pie/
     );
   }
 

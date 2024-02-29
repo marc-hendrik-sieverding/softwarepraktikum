@@ -18,7 +18,6 @@ function Registrierung() {
        else { 
         const neuerBenutzer = { Benutzername: Benutzername, Passwort: Passwort };
         
-        console.log(neuerBenutzer)
         setRegistrierteUser([...registrierteUser, neuerBenutzer]);
         setBenutzername('');
         setPasswort(''); }

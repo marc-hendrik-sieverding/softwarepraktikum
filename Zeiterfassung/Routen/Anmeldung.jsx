@@ -8,21 +8,18 @@ function Anmeldung({ registrierteUser }) {
     const [Benutzername, setBenutzername] = useState('');
     const [Passwort, setPasswort] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
-
+  
     const Einloggen = () => {
       const user = registrierteUser.find(user => user.Benutzername === Benutzername && user.Passwort === Passwort);
         if (user) {
             setIsLoggedIn(true);
         }
         alert('Falscher Benutzername oder Passwort');
-      }
-
+    }
 
     const Ausloggen = () => {
       setIsLoggedIn(false);
     }
-
 
   return (
     <>
@@ -33,7 +30,8 @@ function Anmeldung({ registrierteUser }) {
               <TextField class="Passwort" placeholder="Passwort" variant="filled" onChange={(event) => setPasswort(event.target.value)} minLength={8} type="password" size="normal"/>
               <Button class = "Login" variant="contained" onClick={Einloggen}> Login </Button>
               <Link to ="/Registrierung">
-              <Button class = "Login" variant="contained"> Registrierung </Button> </Link>
+                <Button class = "Login" variant="contained"> Registrierung </Button> 
+              </Link>
           </div>
         )}
       {isLoggedIn && <> <p class="Willkommen">Willkommen, {Benutzername}! </p> 

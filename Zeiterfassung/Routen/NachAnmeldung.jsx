@@ -12,7 +12,7 @@ export default function NachAnmeldung() {
       <Button variant="contained" onClick={startTimer}> Start </Button>
       <Button variant="contained" onClick={resetTimer}> Reset </Button>
       <Link to={`/Zeit_erfasst/seconds=${seconds}`}>
-        <button>Speichern</button>
+        <Button>Speichern</Button>
       </Link>
     </div>
   );

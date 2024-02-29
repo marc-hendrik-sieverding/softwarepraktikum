@@ -12,6 +12,7 @@ export default function Seconds(secondsValue) {
       setIntervalId(id);
     }
   };
+  
   const Addiere1h = () => {
     setSeconds(prevSeconds => prevSeconds + 3600);
   }
