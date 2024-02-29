@@ -35,7 +35,8 @@ function Anmeldung() {
               <TextField class="Benutzername" placeholder="Benutzername" onChange={(event) => setBenutzername(event.target.value)} required size="normal"/>
               <TextField class="Passwort" placeholder="Passwort" variant="filled" onChange={(event) => setPasswort(event.target.value)} required minLength={8} type="password" size="normal"/>
               <Button class = "Login" variant="contained" onClick={Einloggen}> Login </Button>
-              <Button class = "Login" variant="contained" href="Registrierung"> Login </Button>
+              <Link to ="/Registrierung">
+              <Button class = "Login" variant="contained"> Registrierung </Button> </Link>
           </div>
         )}
       {isLoggedIn && <> <p class="Willkommen">Willkommen, {Benutzername}! </p> 
