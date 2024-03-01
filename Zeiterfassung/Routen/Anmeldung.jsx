@@ -3,16 +3,17 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
-function Anmeldung({ registrierteUser }) {
+function Anmeldung() {
 
     const [Benutzername, setBenutzername] = useState('');
     const [Passwort, setPasswort] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     const Einloggen = () => {
-      const user = registrierteUser.find(user => user.Benutzername === Benutzername && user.Passwort === Passwort);
-        if (user) {
-            setIsLoggedIn(true);
+      const storedBenutzer = sessionStorage.getItem('registrierteUser');
+      const user = storedBenutzer ? JSON.parse(storedBenutzer) : null;
+      if (user && user.Benutzername === Benutzername && user.Passwort === Passwort) {
+          setIsLoggedIn(true);
         } 
         else {
           alert('Falscher Benutzername oder Passwort');

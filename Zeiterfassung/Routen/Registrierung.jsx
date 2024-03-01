@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Anmeldung from './Anmeldung';
 
-function Registrierung({ setRegistrierteUser, registrierteUser }) {
+function Registrierung({}) {
     const [Benutzername, setBenutzername] = useState('');
     const [Passwort, setPasswort] = useState('');
     const [error, setError] = useState(false);
+    const [registrierteUser, setRegistrierteUser] = useState('[]')
 
     const handleRegister = () => {
         if(Benutzername.trim() === '' || Passwort.trim() === '') {
@@ -16,11 +17,13 @@ function Registrierung({ setRegistrierteUser, registrierteUser }) {
         }
        else { 
         const neuerBenutzer = { Benutzername: Benutzername, Passwort: Passwort };
-        setRegistrierteUser([...registrierteUser, neuerBenutzer]);
+        setRegistrierteUser(prevUsers => [...prevUsers, neuerBenutzer]);
         setBenutzername('');
-        setPasswort(''); }
-        setError(false)
+        setPasswort('');
+        setError(false);
+        sessionStorage.setItem('registrierteUser', JSON.stringify(neuerBenutzer));
     };
+}
 
     return (
         <>
