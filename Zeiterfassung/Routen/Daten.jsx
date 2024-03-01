@@ -9,6 +9,7 @@ import { Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../src/styles.css';
+import { Zeitformat } from './Zeitformat'
 
 
 function Daten() {
@@ -98,7 +99,7 @@ function Daten() {
           <TableRow key={index}>  
             <TableCell align="center">{eintrag.Datum}</TableCell>
             <TableCell align="center">{eintrag.Art}</TableCell>
-            <TableCell align="center">{eintrag.Zeit} Sekunden</TableCell>
+            <TableCell align="center">{Zeitformat(eintrag.Zeit)}</TableCell>
             <TableCell align="center">{eintrag.Tätigkeit}</TableCell>
             <TableCell align="center">
               <Button variant="contained" onClick={() => handleDelete(index)}>Löschen</Button>
