@@ -37,14 +37,12 @@ export default function Zeit_erfasst() {
   };
 
   const Addiere1h = () => {
-    const updatedDisplayValue = displayValue + 3600; //displayValue = String, updatedDisplayValue um das zu umgehen
-    setDisplayValue(updatedDisplayValue);
+    setDisplayValue(displayValue + 3600);
   };
 
   const Subtrahiere1h = () => {
     if (displayValue >= 3600) {
-      const updatedDisplayValue = displayValue - 3600;
-      setDisplayValue(updatedDisplayValue);
+      setDisplayValue(displayValue - 3600);
     }
     else {
       alert("Nope.")

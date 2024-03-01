@@ -23,7 +23,5 @@ return {
     seconds,
     startTimer,
     resetTimer,
-    Addiere1h,
-    Subtrahiere1h
   };
 }

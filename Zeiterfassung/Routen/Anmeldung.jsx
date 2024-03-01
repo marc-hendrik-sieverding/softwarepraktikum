@@ -13,8 +13,10 @@ function Anmeldung({ registrierteUser }) {
       const user = registrierteUser.find(user => user.Benutzername === Benutzername && user.Passwort === Passwort);
         if (user) {
             setIsLoggedIn(true);
-        }
-        alert('Falscher Benutzername oder Passwort');
+        } 
+        else {
+          alert('Falscher Benutzername oder Passwort');
+      }
     }
 
     const Ausloggen = () => {
