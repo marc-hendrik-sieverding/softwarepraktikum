@@ -36,6 +36,10 @@ export default function Zeit_erfasst() {
     }
   };
 
+  const handleZeitChange = (event) => {
+    setDisplayValue(Zeitformat(event.target.value))
+  }
+
   const Addiere1h = () => {
     setDisplayValue(displayValue + 3600);
   };
@@ -52,18 +56,18 @@ export default function Zeit_erfasst() {
   return (
     <>
 
-  <TextField placeholder="0 Sekunden" value={Zeitformat(displayValue)}/>
+  <TextField class="ZeitZeit" label="Zeit" placeholder="0 Sekunden" value={Zeitformat(displayValue)} onChange={handleZeitChange}/>
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
         label="Datum"
         value={value}
         onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}/>
   </LocalizationProvider>
-  <TextField placeholder="Tätigkeiten" required variant="filled" minLength={8} 
+  <TextField class="ZeitTätigkeiten" placeholder="Tätigkeiten" required minLength={8} 
   value={taetigkeiten} onChange={handleTextFieldChange} />
   <InputLabel>Art</InputLabel>
   <Select
-        className="Art"
+        class="ZeitArt"
         value={art}
         label="Art"
         onChange={handleChange}>
@@ -71,9 +75,9 @@ export default function Zeit_erfasst() {
         <MenuItem value={"Arbeit"}>Arbeit</MenuItem>
         <MenuItem value={"Sonstiges"}>Sonstiges</MenuItem>
       </Select>
-    <Button variant="contained" onClick={Addiere1h} > +1h </Button>
-    <Button variant="contained" onClick={Subtrahiere1h} > -1h </Button>
-    <Button variant="contained" onClick={handleSave}>Speichern</Button>
+    <Button class = "Addiere1h" variant="contained" onClick={Addiere1h} > +1h </Button>
+    <Button class = "Subtrahiere1h" variant="contained" onClick={Subtrahiere1h} > -1h </Button>
+    <Button class = "ZeitSpeichern" variant="contained" onClick={handleSave}>Speichern</Button>
   </>
 );
 }

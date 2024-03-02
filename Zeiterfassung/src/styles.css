@@ -69,3 +69,59 @@
     bottom: 0%;
     left: 35%; 
 }
+
+.RegBenutzername {
+    font-size: 15px;
+}
+
+.RegPasswort {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.RegText {
+    font-size: 40px;
+    color: black;
+}
+
+.RegButton {
+    margin-top: 5px;
+    background: blue;
+}
+
+.LogRegistrierung {
+    margin-top: 5px;
+    color: black;
+}
+
+.ZeitZeit {
+    position: fixed;
+    left: 10px; 
+}
+
+.ZeitArt {
+    position: fixed;
+    left: 30px;
+}
+
+.ZeitDatePicker {
+    position: fixed;
+    left: 500px;
+}
+
+.Addiere1h {
+    position: fixed;
+    left: 50px;
+    top: 450px;
+}
+
+.Subtrahiere1h {
+    position: fixed;
+    left: 120px;
+    top: 450px; 
+}
+
+.ZeitSpeichern {
+    position: fixed;
+    right: 10px;
+}

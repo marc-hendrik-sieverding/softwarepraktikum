@@ -28,11 +28,11 @@ function Registrierung({}) {
     return (
         <>
         {error && <h1>Bitte fülle alle Felder aus</h1>}
-            <h2>Registrierung</h2>
-            <TextField placeholder="Benutzername" value={Benutzername} onChange={(event) => setBenutzername(event.target.value)} />
-            <TextField placeholder="Passwort" variant="filled" value={Passwort} onChange={(event) => setPasswort(event.target.value)} type="password"/>
+            <h2 class="RegText">Registrierung</h2>
+            <TextField class="RegBenutzername" placeholder="Benutzername" value={Benutzername} onChange={(event) => setBenutzername(event.target.value)} />
+            <TextField class="RegPasswort" placeholder="Passwort" variant="filled" value={Passwort} onChange={(event) => setPasswort(event.target.value)} type="password"/>
             <Link to="/">
-            <Button className="Registrieren" variant="contained" onClick={handleRegister} > Registrieren </Button>
+            <Button class="RegButton" variant="contained" onClick={handleRegister} > Registrieren </Button>
             </Link>
         </>
     );

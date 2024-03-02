@@ -4,10 +4,10 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
 function Anmeldung() {
-
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [Benutzername, setBenutzername] = useState('');
     const [Passwort, setPasswort] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     const Einloggen = () => {
       const storedBenutzer = sessionStorage.getItem('registrierteUser');
@@ -33,7 +33,7 @@ function Anmeldung() {
               <TextField class="Passwort" placeholder="Passwort" variant="filled" onChange={(event) => setPasswort(event.target.value)} minLength={8} type="password" size="normal"/>
               <Button class = "Login" variant="contained" onClick={Einloggen}> Login </Button>
               <Link to ="/Registrierung">
-                <Button class = "Login" variant="contained"> Registrierung </Button> 
+                <Button class = "LogRegistrierung" variant="contained"> Registrierung </Button> 
               </Link>
           </div>
         )}

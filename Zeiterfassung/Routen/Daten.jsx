@@ -41,7 +41,7 @@ function Daten() {
       setDiagrammDaten(diagrammDaten);
   }, [gespeicherteEingaben]);
 
-    useEffect(() => {
+  useEffect(() => {
       filternNachDatum();
     }, [aktuellesDatum, gespeicherteEingaben]);
 
@@ -72,13 +72,14 @@ function Daten() {
     const handleDelete = (index) => {
       const updatedData = [...gefilterteDaten];
       updatedData.splice(index, 1);
+      localStorage.setItem('user', JSON.stringify(updatedData));
       setGefilterteDaten(updatedData);
     };
 
-  const handleClearLocalStorage = () => {
-    localStorage.removeItem('user');
-    setGespeicherteEingaben([]);
-  };
+    const handleClearLocalStorage = () => {
+      localStorage.removeItem('user');
+      setGespeicherteEingaben([]);
+    };
 
   return (
     <>
