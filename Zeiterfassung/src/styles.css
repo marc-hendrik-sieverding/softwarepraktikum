@@ -77,11 +77,11 @@
 .RegPasswort {
     font-size: 15px;
     margin-top: 5px;
+    height: 15px;
 }
 
 .RegText {
     font-size: 40px;
-    color: black;
 }
 
 .RegButton {
@@ -96,32 +96,61 @@
 
 .ZeitZeit {
     position: fixed;
-    left: 10px; 
+    left: 500px; 
 }
 
 .ZeitArt {
     position: fixed;
-    left: 30px;
+    left: 110px;
+    top: -79px;
 }
 
 .ZeitDatePicker {
     position: fixed;
-    left: 500px;
+    left: -80px;
 }
 
 .Addiere1h {
     position: fixed;
-    left: 50px;
-    top: 450px;
+    left: 540px;
+    top: 460px;
 }
 
 .Subtrahiere1h {
     position: fixed;
-    left: 120px;
-    top: 450px; 
+    left: 610px;
+    top: 460px; 
 }
 
 .ZeitSpeichern {
     position: fixed;
-    right: 10px;
+    right: 950px;
+}
+
+.ZeitTätigkeiten {
+    position: fixed;
+    right: 540px;
+    top: 394px;
+}
+
+.ZeitArtText {
+    position: fixed;
+    top: -80px;
+    left: 110px; 
+}
+
+.ZeitUeberschrift {
+    position: fixed;
+    top: 100px;
+}
+
+.ZeitLoeschen {
+    position: fixed;
+    top: 473px;
+    left: 915px; 
+}
+
+.NASpeichern {
+    color: aliceblue;
+    background-color: blue;
 }

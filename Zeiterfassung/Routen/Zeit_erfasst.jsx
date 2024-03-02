@@ -53,23 +53,27 @@ export default function Zeit_erfasst() {
     }
   };
 
+  const handleLoeschen = () => {
+      navigate(`/NachAnmeldung`)
+  }
+
   return (
     <>
-
+  <h1 className="ZeitUeberschrift"> Test </h1>
   <TextField class="ZeitZeit" label="Zeit" placeholder="0 Sekunden" value={Zeitformat(displayValue)} onChange={handleZeitChange}/>
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
+    className='ZeitDatePicker'
         label="Datum"
         value={value}
         onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}/>
   </LocalizationProvider>
   <TextField class="ZeitTätigkeiten" placeholder="Tätigkeiten" required minLength={8} 
   value={taetigkeiten} onChange={handleTextFieldChange} />
-  <InputLabel>Art</InputLabel>
+  <InputLabel className="ZeitArtText">Art</InputLabel>
   <Select
-        class="ZeitArt"
+        className="ZeitArt"
         value={art}
-        label="Art"
         onChange={handleChange}>
         <MenuItem value={"Freizeit"}>Freizeit</MenuItem>
         <MenuItem value={"Arbeit"}>Arbeit</MenuItem>
@@ -78,6 +82,7 @@ export default function Zeit_erfasst() {
     <Button class = "Addiere1h" variant="contained" onClick={Addiere1h} > +1h </Button>
     <Button class = "Subtrahiere1h" variant="contained" onClick={Subtrahiere1h} > -1h </Button>
     <Button class = "ZeitSpeichern" variant="contained" onClick={handleSave}>Speichern</Button>
+    <Button class = "ZeitLoeschen" variant="contained" onClick={handleLoeschen}> Löschen </Button>
   </>
 );
 }
