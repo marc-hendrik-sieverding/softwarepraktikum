@@ -84,8 +84,8 @@ function Daten() {
   return (
     <>
     <h1 className="Datum">Daten für: {aktuellesDatum.toLocaleDateString()}</h1>
-      <Button onClick={vorherigerTag}>Vorheriger Tag</Button>
-      <Button onClick={naechsterTag}>Nächster Tag</Button>
+      <Button className="DatenVorherigerTag" variant= "contained" onClick={vorherigerTag}>Vorheriger Tag</Button>
+      <Button className="DatenNaechsterTag" variant= "contained" onClick={naechsterTag}>Nächster Tag</Button>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-200">
@@ -122,7 +122,7 @@ function Daten() {
     return (
       <div className="">
         <h1>Art</h1>
-        <PieChart series={[{ data: props.DiagrammDaten }]} width={400} height={200}/>
+        <PieChart class="DatenTortendiagramm" series={[{ data: props.DiagrammDaten }]} width={400} height={200}/>
       </div>    //Referenz: https://mui.com/x/react-charts/pie/
     );
   }

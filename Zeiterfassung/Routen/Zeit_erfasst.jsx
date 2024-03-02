@@ -59,7 +59,7 @@ export default function Zeit_erfasst() {
 
   return (
     <>
-  <h1 className="ZeitUeberschrift"> Test </h1>
+  <h1 className="ZeitUeberschrift"> Bitte geben Sie weitere Informationen an: </h1>
   <TextField class="ZeitZeit" label="Zeit" placeholder="0 Sekunden" value={Zeitformat(displayValue)} onChange={handleZeitChange}/>
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker

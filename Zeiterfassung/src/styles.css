@@ -142,6 +142,7 @@
 .ZeitUeberschrift {
     position: fixed;
     top: 100px;
+    left: 400px;
 }
 
 .ZeitLoeschen {
@@ -152,5 +153,17 @@
 
 .NASpeichern {
     color: aliceblue;
-    background-color: blue;
+    background-color:royalblue;
+}
+
+.DatenVorherigerTag {
+    position: fixed;
+    left: -220px; 
+    top: -125px;
+}
+
+.DatenNaechsterTag {
+    position: fixed;
+    left: 100px; 
+    top: -125px;
 }
