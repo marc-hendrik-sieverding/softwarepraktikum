@@ -9,25 +9,34 @@ import { Zeitformat } from './Zeitformat'
 import FilterDatum from './FilterDatum'
 
 function Daten() {
-  const { art, taetigkeiten, seconds, value } = useParams();
+  const { art, taetigkeiten, seconds, value, aktuelleZeit } = useParams();
   const [DiagrammDaten, setDiagrammDaten] = useState([]);
   const [gespeicherteEingaben, setGespeicherteEingaben] = useState([]);
   const {gefilterteDaten, vorherigerTag, naechsterTag, aktuellesDatum} = FilterDatum(gespeicherteEingaben)
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  const userId = user.userId;
+  const ZeitTeile = aktuelleZeit.split(':');
+  const Stunden = parseInt(ZeitTeile[0])
+  const Minuten = parseInt(ZeitTeile[1])
+  const Sekunden = parseInt(ZeitTeile[2])
+  const aktuelleZeitInSekunden = Stunden * 3600 + Minuten * 60 + Sekunden
+  const endZeit = Zeitformat(aktuelleZeitInSekunden + parseInt(seconds));
+  
     
   useEffect(() => {
-    const existingData = JSON.parse(localStorage.getItem('user'));
+    const existingData = JSON.parse(localStorage.getItem(`user_${userId}`));
     const newData = { Datum: value, Art: art, Zeit: seconds, Tätigkeit: taetigkeiten };
 
     if (existingData) {
       const updatedData = [...existingData, newData];
-      localStorage.setItem('user', JSON.stringify(updatedData));
+      localStorage.setItem(`user_${userId}`, JSON.stringify(updatedData));
       setGespeicherteEingaben(updatedData);
     } 
     else {
-      localStorage.setItem('user', JSON.stringify([newData]));
+      localStorage.setItem(`user_${userId}`, JSON.stringify([newData]));
       setGespeicherteEingaben(newData);
     }
-  },[art, taetigkeiten, seconds, value]);    //lösche den array für eine Überraschung
+  },[art, taetigkeiten, seconds, value, userId]);    //lösche den array für eine Überraschung
 
   useEffect(() => {
     const ArtAnzahl = { Freizeit: 0, Arbeit: 0, Sonstiges: 0 };
@@ -40,12 +49,12 @@ function Daten() {
     const handleDelete = (index) => {
       const updatedData = [...gefilterteDaten];
       updatedData.splice(index, 1);
-      localStorage.setItem('user', JSON.stringify(updatedData));
+      localStorage.setItem(`user_${userId}`, JSON.stringify(updatedData));
       setGespeicherteEingaben(updatedData);
     };
 
     const handleClearLocalStorage = () => {
-      localStorage.removeItem('user');
+      localStorage.removeItem(`user_${userId}`);
       setGespeicherteEingaben([]);
     };
 
@@ -58,18 +67,20 @@ function Daten() {
         <TableHead>
           <TableRow className="bg-slate-200">
             <TableCell align="center">Datum</TableCell>
-            <TableCell align="center">Art</TableCell>
-            <TableCell align="center">Zeit</TableCell>
+            <TableCell align="center">Zeitraum</TableCell>
             <TableCell align="center">Tätigkeit</TableCell>
+            <TableCell align="center">Zeit</TableCell>
+            <TableCell align="center">Art</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
         {gefilterteDaten.map((eintrag, index) => (
           <TableRow key={index}>  
             <TableCell align="center">{eintrag.Datum}</TableCell>
-            <TableCell align="center">{eintrag.Art}</TableCell>
-            <TableCell align="center">{Zeitformat(eintrag.Zeit)}</TableCell>
+            <TableCell align="center">{aktuelleZeit} -- {endZeit} </TableCell>
             <TableCell align="center">{eintrag.Tätigkeit}</TableCell>
+            <TableCell align="center">{Zeitformat(eintrag.Zeit)}</TableCell>
+            <TableCell align="center">{eintrag.Art}</TableCell>
             <TableCell align="center">
               <Button variant="contained" onClick={() => handleDelete(index)}>Löschen</Button>
             </TableCell>

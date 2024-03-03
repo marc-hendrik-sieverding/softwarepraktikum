@@ -13,12 +13,12 @@ import { Zeitformat } from './Zeitformat'
 
 export default function Zeit_erfasst() {
   const navigate = useNavigate();
-  const { seconds } = useParams();
-  const secondsValue = seconds.split('=')[1];
+  const { seconds, aktuelleZeit } = useParams();
   const [value, setValue] = useState(dayjs('2024-02-18'));
   const [art, setArt] = useState('Sonstiges');
   const [taetigkeiten, setTaetigkeiten] = useState('');
-  const [displayValue, setDisplayValue] = useState(parseInt(secondsValue));
+  const [displayValue, setDisplayValue] = useState(parseInt(seconds));
+  console.log(seconds)
 
   const handleTextFieldChange = (event) => {
     setTaetigkeiten(event.target.value);
@@ -32,7 +32,7 @@ export default function Zeit_erfasst() {
     if (taetigkeiten.trim() === '') {
       alert('Bitte füllen Sie das Feld "Tätigkeiten" aus.');
     } else {
-      navigate(`/Daten/${taetigkeiten}/${displayValue}/${art}/${value}`);
+      navigate(`/Daten/${taetigkeiten}/${displayValue}/${art}/${value}/${aktuelleZeit}`);
     }
   };
 

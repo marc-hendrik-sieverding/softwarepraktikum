@@ -10,7 +10,7 @@ function Anmeldung() {
     const [Passwort, setPasswort] = useState('');
   
     const Einloggen = () => {
-      const storedBenutzer = sessionStorage.getItem('registrierteUser');
+      const storedBenutzer = sessionStorage.getItem('user');
       const user = storedBenutzer ? JSON.parse(storedBenutzer) : null;
       if (user && user.Benutzername === Benutzername && user.Passwort === Passwort) {
           setIsLoggedIn(true);

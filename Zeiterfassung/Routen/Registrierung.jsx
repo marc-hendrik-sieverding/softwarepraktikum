@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { TextField } from '@react-ui-org/react-ui';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
-function Registrierung({}) {
+function Registrierung() {
     const [Benutzername, setBenutzername] = useState('');
     const [Passwort, setPasswort] = useState('');
     const [error, setError] = useState(false);
@@ -18,14 +19,15 @@ function Registrierung({}) {
             setError(true)
             return;
         }
-       else { 
-        const neuerBenutzer = { Benutzername: Benutzername, Passwort: Passwort };
-        setRegistrierteUser(prevUsers => [...prevUsers, neuerBenutzer]);
-        setBenutzername('');
-        setPasswort('');
-        setError(false);
-        sessionStorage.setItem('registrierteUser', JSON.stringify(neuerBenutzer));
-    };
+        else { 
+            const userId = erstelleUserId();
+            const neuerBenutzer = {userId: userId, Benutzername: Benutzername, Passwort: Passwort };
+            setRegistrierteUser(prevUsers => [...prevUsers, neuerBenutzer]);
+            setBenutzername('');
+            setPasswort('');
+            setError(false);
+            sessionStorage.setItem('user', JSON.stringify(neuerBenutzer));
+        };
 }
     const handleBenutzerChange = (event) => {
         setBenutzername(event.target.value);
@@ -34,6 +36,10 @@ function Registrierung({}) {
     const handlePasswortChange = (event) => {
         setPasswort(event.target.value);
     };
+
+    const erstelleUserId = () => {
+        return uuidv4(); //https://www.npmjs.com/package/uuid
+    }
 
     return (
         <>

@@ -3,18 +3,29 @@ import { Button } from '@mui/material';
 import Seconds from './Seconds';
 import { Link } from 'react-router-dom';
 import { Zeitformat } from './Zeitformat';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function NachAnmeldung() {
   const { seconds, startTimer, resetTimer} = Seconds();
+  const [aktuelleZeit, setAktuelleZeit] = useState('');
+  const navigate = useNavigate();
 
+  
+  const aktuellerZeitpunkt = () => {
+    const aktuelleZeit = new Date().toLocaleTimeString();
+    setAktuelleZeit(aktuelleZeit)
+  }
+  const handleSave = () => {
+  navigate(`/Zeit_erfasst/${seconds}/${aktuelleZeit}`);
+  }
+  
   return (
     <div>
       <h2>Zeit: {Zeitformat(seconds)}</h2>
-      <Button variant="contained" onClick={startTimer}> Start </Button>
+      <Button variant="contained" onClick={() => {startTimer(); aktuellerZeitpunkt();}}> Start </Button>
       <Button variant="contained" onClick={resetTimer}> Reset </Button>
-      <Link to={`/Zeit_erfasst/seconds=${seconds}`}>
-        <Button variant='contained'>Speichern</Button>
-      </Link>
+      <Button variant='contained' onClick={handleSave}> Speichern </Button>
       <Button class="logout" variant="contained" href="/" >Logout</Button>
     </div>
   );

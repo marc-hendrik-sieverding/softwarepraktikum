@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-export default function Seconds(secondsValue) {
+export default function Seconds() {
     const [intervalId, setIntervalId] = useState(null);
-    const [seconds, setSeconds] = useState(secondsValue || 0);
+    const [seconds, setSeconds] = useState(0);
 
   const startTimer = () => {
     if (intervalId === null) {
