@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { PieChart } from '@mui/x-charts/PieChart';
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { Button } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../src/styles.css';
 import { Zeitformat } from './Zeitformat'
-
+import FilterDatum from './FilterDatum'
 
 function Daten() {
   const { art, taetigkeiten, seconds, value } = useParams();
   const [DiagrammDaten, setDiagrammDaten] = useState([]);
   const [gespeicherteEingaben, setGespeicherteEingaben] = useState([]);
-  const [aktuellesDatum, setAktuellesDatum] = useState(new Date());
-  const [gefilterteDaten, setGefilterteDaten] = useState([]);
+  const {gefilterteDaten, vorherigerTag, naechsterTag, aktuellesDatum} = FilterDatum(gespeicherteEingaben)
     
   useEffect(() => {
     const existingData = JSON.parse(localStorage.getItem('user'));
@@ -30,7 +25,7 @@ function Daten() {
     } 
     else {
       localStorage.setItem('user', JSON.stringify([newData]));
-      setGespeicherteEingaben([newData]);
+      setGespeicherteEingaben(newData);
     }
   },[art, taetigkeiten, seconds, value]);    //lösche den array für eine Überraschung
 
@@ -41,39 +36,12 @@ function Daten() {
       setDiagrammDaten(diagrammDaten);
   }, [gespeicherteEingaben]);
 
-  useEffect(() => {
-      filternNachDatum();
-    }, [aktuellesDatum, gespeicherteEingaben]);
-
-    const filternNachDatum = () => {
-      const gefiltert = gespeicherteEingaben.filter((eintrag) => {
-        const eintragDatum = new Date(eintrag.Datum);
-        return (
-          eintragDatum.getDate() === aktuellesDatum.getDate() &&
-          eintragDatum.getMonth() === aktuellesDatum.getMonth() &&
-          eintragDatum.getFullYear() === aktuellesDatum.getFullYear()
-        );
-      });
-      setGefilterteDaten(gefiltert);
-    };
-
-    const vorherigerTag = () => {
-      const neuesDatum = new Date(aktuellesDatum);
-      neuesDatum.setDate(neuesDatum.getDate() - 1);
-      setAktuellesDatum(neuesDatum);
-    };
-  
-    const naechsterTag = () => {
-      const neuesDatum = new Date(aktuellesDatum);
-      neuesDatum.setDate(neuesDatum.getDate() + 1);
-      setAktuellesDatum(neuesDatum);
-    };
 
     const handleDelete = (index) => {
       const updatedData = [...gefilterteDaten];
       updatedData.splice(index, 1);
       localStorage.setItem('user', JSON.stringify(updatedData));
-      setGefilterteDaten(updatedData);
+      setGespeicherteEingaben(updatedData);
     };
 
     const handleClearLocalStorage = () => {
@@ -110,7 +78,6 @@ function Daten() {
         </TableBody>
       </Table>
         <Button variant="contained" onClick={handleClearLocalStorage}>LÖSCHE ALLES</Button>
-        <Button variant="contained" href="/"> Home </Button>
         <Link to="/NachAnmeldung">
           <Button variant="contained">Zeit erfassen</Button> 
         </Link>

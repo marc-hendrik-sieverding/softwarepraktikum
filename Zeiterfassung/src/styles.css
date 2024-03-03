@@ -71,6 +71,7 @@
 }
 
 .RegBenutzername {
+    margin-top: 100px;
     font-size: 15px;
 }
 
@@ -81,17 +82,17 @@
 }
 
 .RegText {
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .RegButton {
     margin-top: 5px;
-    background: blue;
+    background: rgb(30, 64, 173);
 }
 
 .LogRegistrierung {
     margin-top: 5px;
-    color: black;
+    background: rgb(30, 64, 173);
 }
 
 .ZeitZeit {
@@ -158,12 +159,12 @@
 
 .DatenVorherigerTag {
     position: fixed;
-    left: -220px; 
+    left: -33%; 
     top: -125px;
 }
 
 .DatenNaechsterTag {
     position: fixed;
-    left: 100px; 
+    left: 14%; 
     top: -125px;
 }

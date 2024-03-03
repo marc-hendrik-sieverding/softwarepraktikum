@@ -15,6 +15,7 @@ export default function NachAnmeldung() {
       <Link to={`/Zeit_erfasst/seconds=${seconds}`}>
         <Button variant='contained'>Speichern</Button>
       </Link>
+      <Button class="logout" variant="contained" href="/" >Logout</Button>
     </div>
   );
 }
