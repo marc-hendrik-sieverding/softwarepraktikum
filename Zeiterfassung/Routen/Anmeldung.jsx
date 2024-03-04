@@ -10,9 +10,10 @@ function Anmeldung() {
     const [Passwort, setPasswort] = useState('');
   
     const Einloggen = () => {
-      const storedBenutzer = sessionStorage.getItem('user');
-      const user = storedBenutzer ? JSON.parse(storedBenutzer) : null;
-      if (user && user.Benutzername === Benutzername && user.Passwort === Passwort) {
+      const storedBenutzer = localStorage.getItem('user');
+      const gefundeneBenutzer = storedBenutzer ? JSON.parse(storedBenutzer) : null;
+      const user = gefundeneBenutzer.find(user => user.Benutzername === Benutzername && user.Passwort === Passwort);
+        if (user) {
           setIsLoggedIn(true);
         } 
         else {
@@ -40,7 +41,9 @@ function Anmeldung() {
       {isLoggedIn && <> <p class="Willkommen">Willkommen, {Benutzername}! </p> 
       <Button variant="contained" href="/NachAnmeldung"> Zeit erfassen </Button>
       <Button class="Daten" variant="contained" href="/Daten/"> Daten </Button>
-      <Button class="logout" variant="contained" href="/" onClick = {Ausloggen} >Logout</Button>
+      <Link to = "/">
+      <Button class="logout" variant="contained" onClick = {Ausloggen} >Logout</Button>
+       </Link>
        </>}
     </>
   );

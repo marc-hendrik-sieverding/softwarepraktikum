@@ -4,6 +4,11 @@
     right: 20px; 
     font-size: 20px;
     color: rgb(3, 3, 3);
+    border-style: solid;
+    padding: 10px 20px;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 20px;
 }
 
 .Benutzername {
@@ -21,7 +26,10 @@
 .Login {
     font-size: 16px;
     padding: 10px 20px;
-    background: rgb(30, 64, 173);
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .Daten {
@@ -30,10 +38,16 @@
     left: 20px;
     font-size: 20px;
     color: rgb(0, 0, 0);
+    border-style: solid;
+    padding: 10px 20px;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 20px;
+    
 }
 
 .Willkommen {
-    font-size: 30px;
+    font-size: 50px;
     margin-bottom: 7px;
 }
 
@@ -58,8 +72,8 @@
 .Datum {
     font-size: 30px;
     left: 40%; 
-    position: fixed;
-    top:20px
+    position:absolute ;
+    top:15px;
 }
 
 
@@ -79,6 +93,7 @@
     font-size: 15px;
     margin-top: 5px;
     height: 15px;
+    
 }
 
 .RegText {
@@ -87,84 +102,133 @@
 
 .RegButton {
     margin-top: 5px;
-    background: rgb(30, 64, 173);
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .LogRegistrierung {
     margin-top: 5px;
-    background: rgb(30, 64, 173);
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .ZeitZeit {
     position: fixed;
-    left: 500px; 
+    left: 15%; 
 }
 
 .ZeitArt {
     position: fixed;
-    left: 110px;
+    left: 35%;
     top: -79px;
 }
 
 .ZeitDatePicker {
     position: fixed;
-    left: -80px;
+    left: -37%;
 }
 
 .Addiere1h {
     position: fixed;
-    left: 540px;
-    top: 460px;
+    left: 18%;
+    top: 50%;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .Subtrahiere1h {
     position: fixed;
-    left: 610px;
-    top: 460px; 
+    left: 24%;
+    top: 50%;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2); 
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .ZeitSpeichern {
     position: fixed;
-    right: 950px;
+    right: 50.5%;
+    top: 50%;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .ZeitTätigkeiten {
     position: fixed;
-    right: 540px;
-    top: 394px;
+    right: 21%;
+    top: 38.6%;
 }
 
 .ZeitArtText {
     position: fixed;
     top: -80px;
-    left: 110px; 
+    left: 34%; 
 }
 
 .ZeitUeberschrift {
     position: fixed;
-    top: 100px;
-    left: 400px;
+    top: 1%;
+    left: 10%;
+    text-align: center;
 }
 
 .ZeitLoeschen {
     position: fixed;
-    top: 473px;
-    left: 915px; 
+    top: 50%;
+    left: 50%; 
+    box-shadow: 2px 2px 2px rgb(0, 0, 0,.2);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .NASpeichern {
     color: aliceblue;
     background-color:royalblue;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.StartResetSpeichern {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .DatenVorherigerTag {
     position: fixed;
-    left: -33%; 
-    top: -125px;
+    right: 17%;
+    top: 5%;
 }
 
 .DatenNaechsterTag {
     position: fixed;
-    left: 14%; 
-    top: -125px;
+    right: -17%;
+    top: 5%;
+}
+
+.DatenTortendiagrammContainer {
+    position: relative;
+    left: 34%;
+
+}
+
+.DatenTortendiagrammText {
+    position: relative;
+    left: -34%;
+
+}
+
+@media (prefers-color-scheme: dark) {
+
 }

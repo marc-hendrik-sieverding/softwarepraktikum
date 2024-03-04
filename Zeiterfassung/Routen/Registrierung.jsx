@@ -22,11 +22,20 @@ function Registrierung() {
         else { 
             const userId = erstelleUserId();
             const neuerBenutzer = {userId: userId, Benutzername: Benutzername, Passwort: Passwort };
-            setRegistrierteUser(prevUsers => [...prevUsers, neuerBenutzer]);
+            const gespeicherteBenutzer = JSON.parse(localStorage.getItem('user') || '[]');
+            const benutzerExistiert = gespeicherteBenutzer.some(user => user.Benutzername === Benutzername);
+
+            if (benutzerExistiert) {
+                setError(true);
+                return;
+            }
+
+            const updatedBenutzer = [...gespeicherteBenutzer, neuerBenutzer];
             setBenutzername('');
             setPasswort('');
             setError(false);
-            sessionStorage.setItem('user', JSON.stringify(neuerBenutzer));
+            localStorage.setItem('user', JSON.stringify(updatedBenutzer));
+            console.log(updatedBenutzer)
         };
 }
     const handleBenutzerChange = (event) => {

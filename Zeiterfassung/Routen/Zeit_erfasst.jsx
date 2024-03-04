@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
-import Seconds from './Seconds';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -14,7 +13,7 @@ import { Zeitformat } from './Zeitformat'
 export default function Zeit_erfasst() {
   const navigate = useNavigate();
   const { seconds, aktuelleZeit } = useParams();
-  const [value, setValue] = useState(dayjs('2024-02-18'));
+  const [value, setValue] = useState(dayjs('2024-03-4'));
   const [art, setArt] = useState('Sonstiges');
   const [taetigkeiten, setTaetigkeiten] = useState('');
   const [displayValue, setDisplayValue] = useState(parseInt(seconds));
@@ -64,7 +63,7 @@ export default function Zeit_erfasst() {
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
     className='ZeitDatePicker'
-        label="Datum"
+        label="Datum (MM, DD, YYYY)"
         value={value}
         onChange={(newValue) => setValue(newValue.format('YYYY-MM-DD'))}/>
   </LocalizationProvider>

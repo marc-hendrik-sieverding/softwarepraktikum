@@ -13,7 +13,7 @@ function Daten() {
   const [DiagrammDaten, setDiagrammDaten] = useState([]);
   const [gespeicherteEingaben, setGespeicherteEingaben] = useState([]);
   const {gefilterteDaten, vorherigerTag, naechsterTag, aktuellesDatum} = FilterDatum(gespeicherteEingaben)
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
   const userId = user.userId;
   const ZeitTeile = aktuelleZeit.split(':');
   const Stunden = parseInt(ZeitTeile[0])
@@ -60,7 +60,7 @@ function Daten() {
 
   return (
     <>
-    <h1 className="Datum">Daten für: {aktuellesDatum.toLocaleDateString()}</h1>
+    <h1 class="Datum">Daten für: {aktuellesDatum.toLocaleDateString()}</h1>
       <Button className="DatenVorherigerTag" variant= "contained" onClick={vorherigerTag}>Vorheriger Tag</Button>
       <Button className="DatenNaechsterTag" variant= "contained" onClick={naechsterTag}>Nächster Tag</Button>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -71,6 +71,7 @@ function Daten() {
             <TableCell align="center">Tätigkeit</TableCell>
             <TableCell align="center">Zeit</TableCell>
             <TableCell align="center">Art</TableCell>
+            <TableCell align="center">Löschen</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -98,9 +99,9 @@ function Daten() {
   
   function Tortendiagramm(props) {
     return (
-      <div className="">
-        <h1>Art</h1>
-        <PieChart class="DatenTortendiagramm" series={[{ data: props.DiagrammDaten }]} width={400} height={200}/>
+      <div className="DatenTortendiagrammContainer">
+        <h1 className="DatenTortendiagrammText">Art</h1>
+        <PieChart className="DatenTortendiagramm" series={[{ data: props.DiagrammDaten }]} width={400} height={200}/>
       </div>    //Referenz: https://mui.com/x/react-charts/pie/
     );
   }

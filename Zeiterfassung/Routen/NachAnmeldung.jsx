@@ -23,9 +23,9 @@ export default function NachAnmeldung() {
   return (
     <div>
       <h2>Zeit: {Zeitformat(seconds)}</h2>
-      <Button variant="contained" onClick={() => {startTimer(); aktuellerZeitpunkt();}}> Start </Button>
-      <Button variant="contained" onClick={resetTimer}> Reset </Button>
-      <Button variant='contained' onClick={handleSave}> Speichern </Button>
+      <Button class="StartResetSpeichern" variant="contained" onClick={() => {startTimer(); aktuellerZeitpunkt();}}> Start </Button>
+      <Button class="StartResetSpeichern" variant="contained" onClick={resetTimer}> Reset </Button>
+      <Button class="StartResetSpeichern" variant='contained' onClick={handleSave}> Speichern </Button>
       <Button class="logout" variant="contained" href="/" >Logout</Button>
     </div>
   );
