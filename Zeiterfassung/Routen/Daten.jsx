@@ -16,17 +16,10 @@ function Daten() {
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user.userId;
   const ZeitTeile = aktuelleZeit.split(':');
-  const Stunden = parseInt(ZeitTeile[0])
-  const Minuten = parseInt(ZeitTeile[1])
-  const Sekunden = parseInt(ZeitTeile[2])
-  const aktuelleZeitInSekunden = Stunden * 3600 + Minuten * 60 + Sekunden
-  const endZeit = Zeitformat(aktuelleZeitInSekunden + parseInt(seconds));
-  
+  const existingData = JSON.parse(localStorage.getItem(`user_${userId}`));
+  const newData = { Datum: value, Art: art, Zeit: seconds, Tätigkeit: taetigkeiten };
     
   useEffect(() => {
-    const existingData = JSON.parse(localStorage.getItem(`user_${userId}`));
-    const newData = { Datum: value, Art: art, Zeit: seconds, Tätigkeit: taetigkeiten };
-
     if (existingData) {
       const updatedData = [...existingData, newData];
       localStorage.setItem(`user_${userId}`, JSON.stringify(updatedData));
@@ -36,7 +29,7 @@ function Daten() {
       localStorage.setItem(`user_${userId}`, JSON.stringify([newData]));
       setGespeicherteEingaben(newData);
     }
-  },[art, taetigkeiten, seconds, value, userId]);    //lösche den array für eine Überraschung
+  },[art, taetigkeiten, seconds, value, userId]);   
 
   useEffect(() => {
     const ArtAnzahl = { Freizeit: 0, Arbeit: 0, Sonstiges: 0 };
@@ -58,6 +51,18 @@ function Daten() {
       setGespeicherteEingaben([]);
     };
 
+    const berechneEndZeit = (eintragZeit) => {
+      const Stunden = parseInt(ZeitTeile[0])
+      const Minuten = parseInt(ZeitTeile[1])
+      const Sekunden = parseInt(ZeitTeile[2])
+      const aktuelleZeitInSekunden = Stunden * 3600 + Minuten * 60 + Sekunden
+      const endZeitInSekunden = aktuelleZeitInSekunden + parseInt(eintragZeit);
+      const StundenEndzeit = Math.floor(endZeitInSekunden / 3600);
+      const MinutenEndzeit = Math.floor((endZeitInSekunden % 3600) / 60);
+      const SekundenEndzeit = endZeitInSekunden % 60;
+      return `${StundenEndzeit}:${MinutenEndzeit}:${SekundenEndzeit}`;
+    }
+
   return (
     <>
     <h1 class="Datum">Daten für: {aktuellesDatum.toLocaleDateString()}</h1>
@@ -78,7 +83,7 @@ function Daten() {
         {gefilterteDaten.map((eintrag, index) => (
           <TableRow key={index}>  
             <TableCell align="center">{eintrag.Datum}</TableCell>
-            <TableCell align="center">{aktuelleZeit} -- {endZeit} </TableCell>
+            <TableCell align="center">{aktuelleZeit} -- {berechneEndZeit(eintrag.Zeit)} </TableCell>
             <TableCell align="center">{eintrag.Tätigkeit}</TableCell>
             <TableCell align="center">{Zeitformat(eintrag.Zeit)}</TableCell>
             <TableCell align="center">{eintrag.Art}</TableCell>

@@ -17,7 +17,9 @@ export default function NachAnmeldung() {
     setAktuelleZeit(aktuelleZeit)
   }
   const handleSave = () => {
-  navigate(`/Zeit_erfasst/${seconds}/${aktuelleZeit}`);
+    if (seconds === 0) {
+      alert("Bitte starte einen Timer"); }
+    else {navigate(`/Zeit_erfasst/${seconds}/${aktuelleZeit}`);};
   }
   
   return (
@@ -26,7 +28,9 @@ export default function NachAnmeldung() {
       <Button class="StartResetSpeichern" variant="contained" onClick={() => {startTimer(); aktuellerZeitpunkt();}}> Start </Button>
       <Button class="StartResetSpeichern" variant="contained" onClick={resetTimer}> Reset </Button>
       <Button class="StartResetSpeichern" variant='contained' onClick={handleSave}> Speichern </Button>
-      <Button class="logout" variant="contained" href="/" >Logout</Button>
+      <Link to ="/">
+      <Button class="logout" variant="contained">Logout</Button>
+      </Link>
     </div>
   );
 }

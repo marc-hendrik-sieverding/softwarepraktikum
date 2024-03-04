@@ -17,7 +17,6 @@ export default function Zeit_erfasst() {
   const [art, setArt] = useState('Sonstiges');
   const [taetigkeiten, setTaetigkeiten] = useState('');
   const [displayValue, setDisplayValue] = useState(parseInt(seconds));
-  console.log(seconds)
 
   const handleTextFieldChange = (event) => {
     setTaetigkeiten(event.target.value);

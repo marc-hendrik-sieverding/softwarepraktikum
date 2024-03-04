@@ -8,11 +8,6 @@ function Registrierung() {
     const [Benutzername, setBenutzername] = useState('');
     const [Passwort, setPasswort] = useState('');
     const [error, setError] = useState(false);
-    const [registrierteUser, setRegistrierteUser] = useState('[]')
-
-    console.log(Benutzername)
-    console.log(Passwort)
-    console.log(error)
 
     const handleRegister = () => {
         if(Benutzername.trim() === '' || Passwort.trim() === '') {
