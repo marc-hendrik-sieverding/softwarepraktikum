@@ -5,7 +5,6 @@ import Anmeldung from '../Routen/Anmeldung';
 import Daten from '../Routen/Daten'
 import Zeit_erfasst from '../Routen/Zeit_erfasst'
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
-import './styles.css';
 import Registrierung from '../Routen/Registrierung';
 
 function App() { 

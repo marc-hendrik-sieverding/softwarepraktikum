@@ -10,9 +10,9 @@ function Registrierung() {
     const [error, setError] = useState(false);
 
     const handleRegister = () => {
-        if(Benutzername.trim() === '' || Passwort.trim() === '') {
+        if(Benutzername === '' || Passwort === '') {
             setError(true)
-            return;
+            alert("Benutzername und Passwort dürfen nicht leer sein!")
         }
         else { 
             const userId = erstelleUserId();
@@ -22,6 +22,7 @@ function Registrierung() {
 
             if (benutzerExistiert) {
                 setError(true);
+                alert("Benutzername existiert bereits")
                 return;
             }
 
@@ -30,7 +31,6 @@ function Registrierung() {
             setPasswort('');
             setError(false);
             localStorage.setItem('user', JSON.stringify(updatedBenutzer));
-            console.log(updatedBenutzer)
         };
 }
     const handleBenutzerChange = (event) => {
@@ -49,8 +49,8 @@ function Registrierung() {
         <>
         {error && <h1>Bitte fülle alle Felder aus</h1>}
             <h2 class="RegText">Registrierung</h2>
-            <TextField class="RegBenutzername" placeholder="Benutzername" value={Benutzername} onChange={handleBenutzerChange} />
-            <TextField class="RegPasswort" placeholder="Passwort" variant="filled" value={Passwort} onChange={handlePasswortChange} type="password"/>
+            <TextField class="RegBenutzername" placeholder="Benutzername" onChange={handleBenutzerChange} />
+            <TextField class="RegPasswort" placeholder="Passwort" variant="filled" onChange={handlePasswortChange} type="password"/>
             <Link to="/">
             <Button class="RegButton" variant="contained" onClick={handleRegister} > Registrieren </Button>
             </Link>
@@ -59,4 +59,3 @@ function Registrierung() {
 }
 
 export default Registrierung;
-

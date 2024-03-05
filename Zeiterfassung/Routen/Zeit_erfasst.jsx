@@ -13,7 +13,7 @@ import { Zeitformat } from './Zeitformat'
 export default function Zeit_erfasst() {
   const navigate = useNavigate();
   const { seconds, aktuelleZeit } = useParams();
-  const [value, setValue] = useState(dayjs('2024-03-4'));
+  const [value, setValue] = useState(dayjs(''));
   const [art, setArt] = useState('Sonstiges');
   const [taetigkeiten, setTaetigkeiten] = useState('');
   const [displayValue, setDisplayValue] = useState(parseInt(seconds));
@@ -55,10 +55,17 @@ export default function Zeit_erfasst() {
       navigate(`/NachAnmeldung`)
   }
 
+  const handleZeiteingabeChange = (event) => {
+    const eingabeWert = event.target.value;
+      if (/^\d*$/.test(eingabeWert)) {
+        setDisplayValue(parseInt(eingabeWert))}
+  }
+
   return (
     <>
   <h1 className="ZeitUeberschrift"> Bitte geben Sie weitere Informationen an: </h1>
-  <TextField class="ZeitZeit" label="Zeit" placeholder="0 Sekunden" value={Zeitformat(displayValue)} onChange={handleZeitChange}/>
+  <TextField class="ZeitZeit" label="Zeit" placeholder="0 Sekunden" value={Zeitformat(displayValue)} onChange={handleZeitChange} InputProps={{readOnly: true,}}/>
+  <TextField label="Zeit manuell eingeben" placeholder="Geben Sie eine Zeit ein" onChange={handleZeiteingabeChange}/>
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
     className='ZeitDatePicker'

@@ -15,7 +15,6 @@ function Daten() {
   const {gefilterteDaten, vorherigerTag, naechsterTag, aktuellesDatum} = FilterDatum(gespeicherteEingaben)
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user.userId;
-  const ZeitTeile = aktuelleZeit.split(':');
   const existingData = JSON.parse(localStorage.getItem(`user_${userId}`));
   const newData = { Datum: value, Art: art, Zeit: seconds, Tätigkeit: taetigkeiten };
     
@@ -52,16 +51,38 @@ function Daten() {
     };
 
     const berechneEndZeit = (eintragZeit) => {
+      const ZeitTeile = aktuelleZeit.split(':');
       const Stunden = parseInt(ZeitTeile[0])
       const Minuten = parseInt(ZeitTeile[1])
       const Sekunden = parseInt(ZeitTeile[2])
       const aktuelleZeitInSekunden = Stunden * 3600 + Minuten * 60 + Sekunden
-      const endZeitInSekunden = aktuelleZeitInSekunden + parseInt(eintragZeit);
+      let endZeitInSekunden = aktuelleZeitInSekunden + parseInt(eintragZeit);
+      if (endZeitInSekunden >= 86400) {
+        endZeitInSekunden %= 86400; // Modulo 86400, wenn Zeit über 24 Stunden liegt
+      }
       const StundenEndzeit = Math.floor(endZeitInSekunden / 3600);
       const MinutenEndzeit = Math.floor((endZeitInSekunden % 3600) / 60);
       const SekundenEndzeit = endZeitInSekunden % 60;
       return `${StundenEndzeit}:${MinutenEndzeit}:${SekundenEndzeit}`;
     }
+    useEffect(() => {
+      const ZeitProArt = {};
+
+      gefilterteDaten.forEach((eingabe) => {
+          if (!ZeitProArt[eingabe.Art]) {
+            ZeitProArt[eingabe.Art] = 0;
+          }
+          ZeitProArt[eingabe.Art] += parseInt(eingabe.Zeit);
+      });
+
+      const diagrammDaten = Object.keys(ZeitProArt).map((art) => ({
+          id: art,
+          value: ZeitProArt[art],
+          label: art,
+      }));
+
+      setDiagrammDaten(diagrammDaten);
+  }, [gefilterteDaten]);
 
   return (
     <>
