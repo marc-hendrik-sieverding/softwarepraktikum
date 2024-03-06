@@ -117,7 +117,7 @@ function Daten() {
       </Table>
         <Button variant="contained" onClick={handleClearLocalStorage}>LÖSCHE ALLES</Button>
         <Link to="/NachAnmeldung">
-          <Button variant="contained">Zeit erfassen</Button> 
+          <Button variant="contained">(Weitere) Zeit erfassen</Button> 
         </Link>
       <Tortendiagramm DiagrammDaten={DiagrammDaten} />
     </>

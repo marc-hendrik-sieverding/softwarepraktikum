@@ -209,13 +209,13 @@
 
 .DatenVorherigerTag {
     position: fixed;
-    right: 17%;
+    right: 20%;
     top: 5%;
 }
 
 .DatenNaechsterTag {
     position: fixed;
-    right: -17%;
+    right: -20%;
     top: 5%;
 }
 
@@ -229,6 +229,12 @@
     position: relative;
     left: -34%;
 
+}
+
+.ZeitEingabe {
+    position: fixed;
+    left: 15%;
+    top: 63%;
 }
 
 @media (prefers-color-scheme: dark) {

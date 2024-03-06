@@ -65,7 +65,7 @@ export default function Zeit_erfasst() {
     <>
   <h1 className="ZeitUeberschrift"> Bitte geben Sie weitere Informationen an: </h1>
   <TextField class="ZeitZeit" label="Zeit" placeholder="0 Sekunden" value={Zeitformat(displayValue)} onChange={handleZeitChange} InputProps={{readOnly: true,}}/>
-  <TextField label="Zeit manuell eingeben" placeholder="Geben Sie eine Zeit ein" onChange={handleZeiteingabeChange}/>
+  <TextField class="ZeitEingabe" label="Zeit manuell eingeben (Sek)" placeholder="Geben Sie eine Zeit ein" onChange={handleZeiteingabeChange}/>
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
     className='ZeitDatePicker'
