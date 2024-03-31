@@ -1,4 +1,3 @@
-// FilterDatum.js
 import { useState, useEffect } from 'react';
 
 export default function useFilterDatum(gespeicherteEingaben) {
