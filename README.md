@@ -1,3 +1,9 @@
+0. Starten des Programmes
+Um die Zeiterfassungsoftware, bzw. die Vite Webanwendung zu starten, müssen folgende Befehle angewandt werden:
+cd Zeiterfassung
+npm install
+npm run dev
+
 1. Einleitung 
 
 Zeit ist vielleicht die wichtigste Ressource, die wir Menschen haben. Deswegen liegt es nahe sich zu bemühen, diese, in seinem eigenen Ermessen, sinnvoll zu benutzen.  
@@ -23,29 +29,29 @@ Das Programm zielt aktuell auf User ab, die dieses für die Zeiterfassung in der
 möglich und sinnvoll. Dabei ändern sich jedoch die Erwartungen, die die User an das Programm haben. Während es in der Unternehmenswelt kritisch ist, dass Zeiten zuverlässig und  
 exakt aufgenommen werden, gelten diese hohen Anforderungen im privaten Bereich nicht. Meist muss ein Programm auch individuell für ein Unternehmen anpassbar sein.  
 
-Externe Ressourcen  
+2. Externe Ressourcen  
 
-Vite: 
+2.1 Vite: 
 
 Vite ist ein Build-Tool von Evan You, dem Ersteller des Vue.js-Frameworks. Vite bietet die Möglichkeit Webprojekte zu hosten und lässt sich sehr einfach mit JavaScript sowie Frameworks, wie React, 
 kombinieren. Durch das Hot Module Replacement ist es ausserdem direkt möglich Funktionalitäten des Projekts bei Änderung des Codes zu beobachten und gegebenenfalls zu troubleshooten. 
 Dadurch ist Vite eine einfache und effiziente Möglichkeit für die Entwicklung der Zeiterfassungswebanwendung und wurde deshalb gewählt.   
 
-React:  
+2.2 React:  
 
 React ist eine, von Meta entwickelte, Open Source JavaScript-Bibliothek, welche hier vor allem für das Realisieren der Benutzeroberfläche seinen Einsatz findet. 
 React benutzt hierfür eine komponentenbasierte Architektur, welche mit JSX und HTML ähnlichem Code verwendet werden kann.  
 Ausserdem werden auch oft die von React bereitgestellten Hooks useState() und useEffect() benutzt. Dabei wird der useState benutzt um eine Set- sowie eine Get-Methode  
 für eine Variable zu definieren und anzuwenden und die useEffect() Hook, um auf Änderungen bei bestimmten Variablen zu reagieren. 
 
-React-router-dom: 
+2.3 React-router-dom: 
 
 React-router-dom wird verwendet um zwischen den verschiedenen Routen, die vorher definiert wurden zu routen. Dafür werden bestimmte Elemente geladen, wenn man auf eine 
 bestimmte URL zugreift: "<Route path="/" element={<Anmeldung />} />" Hier wird z.B. definiert, dass bei der URL "/" das Element (bzw. hier auch die Funktion) Anmeldung  
 aufgerufen wird. Um nun auf diese verschiedenen URLs zu kommen, kann man entweder das native href benutzen oder die von React-router-dom bereitgestellten Elemente, wie  
 z.B. "<Link> </Link>" oder auch "navigate".  
 
-Material UI:  
+2.4 Material UI:  
 
 Material UI (MUI) ist eine externe Bibliothek, welche Bedienelemente, wie z.B. Textfelder oder auch Buttons für die Benutzeroberfläche bereitstellt. 
 Nach Import können diese Bedienelemente im Tag, wie z.B. "<Button class="Daten" variant="contained" href="/Daten/"> Daten </Button>" erstellt werden. 
@@ -53,18 +59,18 @@ MUI bietet auch direkt Möglichkeiten an zwischen verschiedenen Design Varianten
 über CSS (Cascading Style Sheets) werden durch className="" auch ermöglicht. 
 In dem Programmcode werden vor allem Textfelder, Buttons, Tabellen als auch ein Tortendiagramm von MUI benutzt. 
 
-day.js   
+2.5 day.js   
 
 Day.js ist eine JavaScript-Bibliothek, welche vor allem zur Manipulation und Formatierung von Datum und Zeit verwendet werden kann. Dabei stellt day.js 
 diese Werte der Daten und Zeiten so zur Verfügung, dass diese durch andere Funktionen manipuliert werden können. Ausserdem unterstützt day.js Lokalisierung, wodurch  
 die Zeit entsprechend an den Benutzer angepasst wird. Dies wird später beim Speichern der Daten in der Tabelle benutzt.  
 
-uuidv4 
+2.6 uuidv4 
 
 uuidv4 ist eine Funktion, die eine 128-Bit UserID generieren kann. Dafür werden zufällige Werte verwendet und aufgrund der großen Anzahl an möglichen UserIDs aufgrund der 128-Bit 
 ist diese fast immer eindeutig. Anhand der UserID können dann die Daten, die auch nur dem richtigen User gehören, im localStorage gespeichert und wieder aufgerufen werden. 
 
-Ablauf des Programmes:   
+3. Ablauf des Programmes:   
 
 Die Zeiterfassungssoftware ist in verschiedene Routen aufgeteilt. App.jsx definiert diese Routen, die dann später zum Navigieren benutzt werden können. 
 Dafür werden die Routen Tags von React-router-dom benutzt (siehe Externe Ressourcen). Einige Routen haben ausserdem vordefinierte Parameter, wie z.B.  
@@ -132,7 +138,7 @@ werden dann auch direkt wieder die Daten nach dem neuen Datum sortiert.
 
   
 
-Entwurfsentscheidungen: 
+4. Entwurfsentscheidungen: 
 
 Eine wichtige Entscheidung beim Entwurf des Programmes war die Darstellung der bereits gespeicherten Daten sowie eine schnelle, einfache Möglichkeit auf einem Blick 
 diese Daten analysieren zu können. Deswegen wurde sich bewusst für die Darstellung in einer Tabelle in Kombination mit einem Tortendiagramm entschieden, da dieses den 
@@ -147,7 +153,7 @@ Einerseits könnten diese Variablen von jeder Route aus modifiziert werden, jedo
 auf z.B. seconds zuzugreifen. Ausserdem bietet react-router-dom mit useParams und dem Browserrouter eine direkte, einfach zu implementierende Möglichkeit die Übergabe  
 in der URL zu ermöglichen.  
 
-Mögliche Erweiterungen 
+5. Mögliche Erweiterungen 
 
 Das Programm ist in seiner Grundfunktionalität vollendet, jedoch gibt es noch einige Bereiche, in denen es Verbesserungspotenzial gibt. Ein großer Aspekt ist hier die  
 Sicherheit des Programmes im Sinne von Datenschutz und Datensicherheit. Aktuell ist es noch möglich Benutzername + Passwort von allen Benutzern aus dem localStorage 
@@ -157,18 +163,23 @@ Zum Beispiel wäre eine Möglichkeit das Programm speziell für die Arbeitswelt 
 und verarbeiten zu können. Dafür könnte noch eine Rollenverwaltung, mit Rollen, wie z.B. Administrator, Personalangestellter und normaler User in Frage kommen.  
 Ausserdem wäre vermutlich die Entwicklung einer Integration für ERP-Systeme, um dort die Daten auswerten zu können, von großem Wert. 
 
-Ausstehende Bugfixes 
+6. Ausstehende Bugfixes 
 
 Es ist aktuell noch nicht möglich eingeloggt zu bleiben: Sobald man wieder auf die Homepage kommt, ist man wieder ausgeloggt. Hier müsste die isLoggedIn() Variable von  
 Anmeldung.jsx global verwaltet und dann dementsprechend, ob man eingeloggt ist oder nicht, angepasst werden können.  
 
-Verwendete Ressourcen: 
+7. Verwendete Ressourcen: 
 
 Vite: https://vitejs.dev 
-React: https://react.dev 
-React-router-dom: https://reactrouter.com/en/main 
-Material UI: https://mui.com 
+
+React: https://react.dev
+
+React-router-dom: https://reactrouter.com/en/main
+
+Material UI: https://mui.com
+
 Day.js: https://day.js.org 
+
 Uuidv4: https://www.npmjs.com/package/uuid 
 
  
