@@ -1,4 +1,5 @@
 0. Starten des Programmes
+
 Um die Zeiterfassungsoftware, bzw. die Vite Webanwendung zu starten, müssen folgende Befehle angewandt werden:
 
 cd Zeiterfassung
